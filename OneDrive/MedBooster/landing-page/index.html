@@ -1,0 +1,3098 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MedBooster — Estude para Residência Médica com Ciência</title>
+<meta name="description" content="Sistema de estudo adaptativo para residência médica. Repetição espaçada personalizada, cronograma inteligente e projeção de nota. O MedBooster aprende como você estuda. R$199,90/mês.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap&subset=latin" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap&subset=latin" rel="stylesheet"/>
+<style>
+/* ============================================
+   DESIGN TOKENS
+   ============================================ */
+:root {
+  --brand: #07C488;
+  --brand-dark: #00cc8e;
+  --brand-50: #E6FFF6;
+  --brand-100: #B3FFE6;
+  --brand-700: #009969;
+  --brand-800: #006645;
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f8fafc;
+  --bg-elevated: #f1f5f9;
+  --accent: #07C488;
+  --accent-dim: rgba(7,196,136,0.08);
+  --accent-glow: rgba(7,196,136,0.15);
+  --text-primary: #0f172a;
+  --text-secondary: #64748b;
+  --text-muted: #94a3b8;
+  --border: #e2e8f0;
+  --border-accent: rgba(7,196,136,0.3);
+  --area-cm: #3b82f6;
+  --area-cir: #ef4444;
+  --area-go: #a855f7;
+  --area-ped: #f59e0b;
+  --area-prev: #22c55e;
+  --mono: 'JetBrains Mono', monospace;
+  --sans: 'Lexend', 'Inter', -apple-system, sans-serif;
+}
+
+/* ============================================
+   RESET & BASE
+   ============================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--sans);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+/* ============================================
+   UTILITY
+   ============================================ */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section { padding: 120px 0; }
+.section--alt { background: var(--bg-secondary); }
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  background: var(--accent-dim);
+  color: var(--accent);
+  border: 1px solid var(--border-accent);
+}
+
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+.section-label::before {
+  content: '';
+  width: 24px; height: 2px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+.section-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+  background: linear-gradient(135deg, var(--text-primary), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.section-subtitle {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  line-height: 1.7;
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.btn--primary {
+  background: var(--accent);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(7,196,136,0.25);
+}
+.btn--primary:hover {
+  box-shadow: 0 4px 16px rgba(7,196,136,0.3), 0 8px 32px rgba(0,0,0,0.08);
+  transform: scale(1.03) translateY(-1px);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+}
+.btn--ghost:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-dim);
+  transform: scale(1.02) translateY(-1px);
+}
+
+.btn--large {
+  padding: 18px 36px;
+  font-size: 1.05rem;
+  border-radius: 14px;
+}
+
+/* ============================================
+   SVG ICONS
+   ============================================ */
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.icon svg {
+  width: 100%;
+  height: 100%;
+  stroke: currentColor;
+  stroke-width: 2;
+  fill: none;
+}
+
+.problem-card__icon,
+.feature-icon {
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.testimonial-card__stars svg {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  margin-right: 2px;
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+.header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 0 24px;
+  transition: all 0.3s ease;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(12px);
+}
+.header.scrolled {
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(20px) saturate(1.2);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.header__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.logo__icon {
+  width: 36px; height: 36px;
+  background: var(--accent);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+}
+.logo__icon svg { width: 20px; height: 20px; }
+.logo__text {
+  font-size: 1.25rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+.logo__text span { color: var(--accent); }
+
+.nav { display: flex; align-items: center; gap: 32px; }
+.nav a {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: color 0.2s;
+}
+.nav a:hover { color: var(--text-primary); }
+
+.header__actions { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+.header__actions .btn { padding: 10px 20px; font-size: 0.875rem; }
+
+.nav__entrar-mobile { display: none; }
+.menu-toggle { display: none; background: none; border: none; cursor: pointer; color: var(--text-primary); min-width: 44px; min-height: 44px; font-size: 1.5rem; }
+.nav--open {
+  display: flex !important;
+  position: fixed;
+  top: 72px;
+  left: 0;
+  right: 0;
+  flex-direction: column;
+  background: rgba(255,255,255,0.98);
+  backdrop-filter: blur(20px);
+  padding: 24px;
+  gap: 16px;
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* ============================================
+   HERO
+   ============================================ */
+.hero {
+  padding: 80px 0 120px;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+}
+
+.hero__bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(7,196,136,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(7,196,136,0.05) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black 20%, transparent 70%);
+}
+
+.hero__glow {
+  position: absolute;
+  top: -200px; left: 50%;
+  transform: translateX(-50%);
+  width: 800px; height: 800px;
+  background: radial-gradient(circle, rgba(7,196,136,0.15) 0%, transparent 60%);
+  opacity: 0.06;
+  pointer-events: none;
+}
+
+.hero__content {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.hero__text { display: flex; flex-direction: column; gap: 24px; }
+
+.hero__title {
+  font-size: clamp(2.5rem, 5vw, 3.75rem);
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+}
+
+.hero__title em {
+  font-style: normal;
+  background: linear-gradient(135deg, #07C488, #00cc8e, #009969);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero__desc {
+  font-size: 1.15rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  max-width: 520px;
+}
+
+.hero__cta-group { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+
+.hero__micro {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+.hero__micro svg { display: inline; vertical-align: middle; margin-right: 4px; }
+
+.hero__proof {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  margin-top: 8px;
+}
+.hero__proof-text {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+.hero__proof-text strong {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* Hero mockup */
+.hero__visual {
+  position: relative;
+}
+
+.mockup-window {
+  background: var(--bg-card);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  box-shadow: 0 25px 80px rgba(0,0,0,0.12), 0 0 0 1px var(--border);
+}
+
+.mockup-window__bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 18px;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+}
+.mockup-window__dot {
+  width: 10px; height: 10px; border-radius: 50%;
+}
+.mockup-window__dot--red { background: #ef4444; }
+.mockup-window__dot--yellow { background: #f59e0b; }
+.mockup-window__dot--green { background: #22c55e; }
+.mockup-window__url {
+  flex: 1;
+  text-align: center;
+  font-size: 0.75rem;
+  font-family: var(--mono);
+  color: var(--text-muted);
+}
+
+.mockup-window__body {
+  padding: 24px;
+  min-height: 380px;
+}
+
+/* Dashboard Preview inside mockup */
+.dash-preview {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.dash-card {
+  background: var(--bg-secondary);
+  border-radius: 10px;
+  padding: 16px;
+  border: 1px solid var(--border);
+}
+.dash-card__label {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+.dash-card__value {
+  font-size: 1.5rem;
+  font-weight: 800;
+  font-family: var(--mono);
+}
+.dash-card__value--green { color: var(--accent); }
+.dash-card__value--blue { color: var(--area-cm); }
+.dash-card__value--yellow { color: var(--area-ped); }
+
+.dash-card--wide { grid-column: 1 / -1; }
+
+.dash-bar-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 80px;
+  margin-top: 12px;
+}
+.dash-bar {
+  flex: 1;
+  border-radius: 4px 4px 0 0;
+  min-height: 8px;
+  transition: height 0.4s ease;
+}
+
+.dash-retention-curve {
+  position: relative;
+  height: 80px;
+  margin-top: 12px;
+  border-bottom: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+  overflow: hidden;
+}
+.dash-retention-curve svg {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+}
+
+/* ============================================
+   CREDIBILITY BAR
+   ============================================ */
+.credbar {
+  padding: 48px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-secondary);
+}
+
+.credbar__label {
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--text-muted);
+  margin-bottom: 28px;
+}
+
+.credbar__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 32px 48px;
+}
+
+.credbar__item {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text-muted);
+  opacity: 0.7;
+  color: var(--text-secondary);
+  letter-spacing: 0.02em;
+}
+
+/* ============================================
+   PROBLEM
+   ============================================ */
+.problem-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 48px;
+}
+
+.problem-card {
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  border-radius: 12px;
+  padding: 32px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.problem-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #ef4444, #f97316);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.problem-card:hover::before { opacity: 1; }
+.problem-card:hover { border-color: rgba(239,68,68,0.3); background: var(--bg-card-hover); }
+
+.problem-card__icon {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  background: rgba(239,68,68,0.1);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 20px;
+  font-size: 1.3rem;
+}
+
+.problem-card__title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.problem-card__desc {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ============================================
+   SCIENCE SECTION (the big differentiator)
+   ============================================ */
+.science {
+  position: relative;
+  overflow: hidden;
+}
+.science__bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 50%, var(--accent-dim) 0%, transparent 50%),
+    radial-gradient(circle at 80% 50%, rgba(59,130,246,0.05) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+}
+
+.pillar-card {
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 36px 28px;
+  position: relative;
+  transition: all 0.3s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+.pillar-card:hover {
+  border-color: var(--border-accent);
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.pillar-card__number {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 16px;
+  opacity: 0.7;
+}
+
+.pillar-card__icon {
+  width: 56px; height: 56px;
+  border-radius: 14px;
+  background: var(--accent-dim);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+}
+
+.pillar-card__title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.pillar-card__desc {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin-bottom: 20px;
+}
+
+.pillar-card__papers {
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.paper-ref {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 6px 0;
+}
+.paper-ref__dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  margin-top: 7px;
+  flex-shrink: 0;
+}
+.paper-ref__text {
+  font-size: 0.72rem;
+  font-family: var(--mono);
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* ============================================
+   ENGINE SECTION (FSRS + Bayesian)
+   ============================================ */
+.engine-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 48px;
+}
+
+.engine-card {
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  border-radius: 16px;
+  padding: 36px;
+  transition: all 0.3s ease;
+}
+.engine-card:hover {
+  border-color: var(--border-accent);
+}
+
+.engine-card--featured {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+  background: linear-gradient(135deg, var(--bg-card), var(--brand-50));
+  border-color: var(--border-accent);
+}
+
+.engine-card__tag {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 12px;
+}
+
+.engine-card__title {
+  font-size: 1.3rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.engine-card__desc {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+.engine-card__papers { padding-top: 16px; border-top: 1px solid var(--border); }
+
+/* Formula display */
+.formula-block {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  color: var(--accent);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.formula-block::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+}
+.formula-block__label {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 16px;
+  display: block;
+}
+.formula-block__eq {
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 2;
+}
+.formula-block__note {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin-top: 12px;
+  font-family: var(--sans);
+}
+
+/* ============================================
+   FEATURES
+   ============================================ */
+.feature-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+  margin-bottom: 100px;
+}
+.feature-row:last-child { margin-bottom: 0; }
+.feature-row--reverse .feature-content { order: 2; }
+.feature-row--reverse .feature-visual { order: 1; }
+
+.feature-content { display: flex; flex-direction: column; gap: 16px; }
+
+.feature-icon {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  background: var(--accent-dim);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem;
+}
+
+.feature-title {
+  font-size: 1.75rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+.feature-desc {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
+}
+
+.feature-visual {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Area colors preview */
+.areas-preview {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  width: 100%;
+}
+.area-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 8px;
+  border-radius: 10px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+}
+.area-col__bar {
+  width: 100%;
+  border-radius: 6px;
+  transition: height 0.5s ease;
+}
+.area-col__label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* SRS timeline preview */
+.srs-timeline {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  width: 100%;
+  padding: 20px 0;
+}
+.srs-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.srs-node__circle {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  border: 2px solid var(--accent);
+  color: var(--accent);
+  background: var(--accent-dim);
+}
+.srs-node__label {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+.srs-connector {
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--border));
+  min-width: 20px;
+}
+
+/* ============================================
+   STEPS
+   ============================================ */
+.steps { background: var(--bg-primary); }
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 48px;
+  position: relative;
+}
+.steps-grid::before {
+  content: '';
+  position: absolute;
+  top: 40px; left: 15%; right: 15%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--border), var(--accent), var(--border));
+}
+
+.step-card {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.step-card__number {
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #ffffff;
+  margin: 0 auto 24px;
+  box-shadow: 0 4px 16px rgba(7,196,136,0.25);
+}
+
+.step-card__title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.step-card__desc {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  max-width: 280px;
+  margin: 0 auto;
+}
+
+/* ============================================
+   TESTIMONIALS
+   ============================================ */
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 48px;
+}
+
+.testimonial-card {
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  border-radius: 16px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.testimonial-card__stars {
+  color: var(--area-ped);
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+}
+
+.testimonial-card__quote {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  font-style: italic;
+  flex: 1;
+}
+
+.testimonial-card__author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.testimonial-card__avatar {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--brand-50);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.testimonial-card__name {
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+.testimonial-card__role {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.testimonials-note {
+  text-align: center;
+  margin-top: 24px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.testimonial-card__stars {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+
+.testimonial-card__stars svg {
+  color: var(--accent);
+  margin: 0 1px;
+}
+
+/* ============================================
+   COMPARISON
+   ============================================ */
+.comparison-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 48px;
+  background: var(--bg-card);
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.comparison-table th,
+.comparison-table td {
+  padding: 18px 24px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+.comparison-table thead th {
+  background: var(--bg-elevated);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.comparison-table thead th:nth-child(2) {
+  color: var(--accent);
+}
+
+.comparison-table td:nth-child(2) {
+  font-weight: 600;
+}
+
+.comparison-table tr:last-child td { border-bottom: none; }
+
+.comparison-table .highlight-row {
+  background: var(--accent-dim);
+}
+.comparison-table .highlight-row td {
+  font-weight: 800;
+}
+
+.check { color: var(--accent); font-size: 1.2rem; }
+.cross { color: var(--text-muted); opacity: 0.4; font-size: 1.2rem; }
+.partial { color: var(--area-ped); font-size: 0.8rem; font-weight: 600; }
+
+/* ============================================
+   PRICING
+   ============================================ */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+  align-items: start;
+}
+
+.pricing-card {
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 36px 28px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+.pricing-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(10px);
+}
+
+.pricing-card--featured {
+  border-color: var(--accent);
+  position: relative;
+  box-shadow: 0 4px 24px rgba(7,196,136,0.15);
+  transform: scale(1.05);
+  z-index: 2;
+  background: linear-gradient(#ffffff, #ffffff) padding-box, linear-gradient(135deg, var(--accent), var(--brand-dark), var(--accent)) border-box;
+  animation: borderShift 3s ease-in-out infinite;
+}
+.pricing-card--featured:hover {
+  transform: scale(1.05) translateY(-4px);
+}
+
+@keyframes borderShift {
+  0%, 100% { filter: hue-rotate(0deg); }
+  50% { filter: hue-rotate(10deg); }
+}
+
+.pricing-card__badge {
+  position: absolute;
+  top: -12px;
+  right: 24px;
+  background: var(--accent);
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 6px 18px;
+  border-radius: 100px;
+}
+
+.pricing-card__name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.pricing-card__tagline {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+
+.pricing-card__price {
+  font-family: var(--mono);
+  font-size: 2.5rem;
+  font-weight: 900;
+  margin-bottom: 4px;
+}
+.pricing-card__price span {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+.pricing-card__save {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 28px;
+}
+.pricing-card__save:empty { margin-bottom: 28px; }
+
+.pricing-card__features {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 32px;
+  flex: 1;
+}
+
+.pricing-feature {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+.pricing-feature__check {
+  color: var(--accent);
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.pricing-guarantee {
+  text-align: center;
+  margin-top: 32px;
+  padding: 16px 24px;
+  background: var(--accent-dim);
+  border: 1px solid var(--border-accent);
+  border-radius: 12px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+.pricing-guarantee strong {
+  color: var(--accent);
+}
+
+/* ============================================
+   FAQ
+   ============================================ */
+.faq-list {
+  max-width: 760px;
+  margin: 48px auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.faq-item {
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.faq-item summary {transition: all 0.2s ease;
+  
+  padding: 20px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: color 0.2s;
+}
+.faq-item summary:hover { color: var(--accent); }
+.faq-item summary::after {
+  content: '+';
+  font-size: 1.3rem;
+  font-weight: 300;
+  color: var(--text-muted);
+  transition: transform 0.2s;
+}
+.faq-item[open] summary::after {
+  transform: rotate(45deg);
+  color: var(--accent);
+}
+
+.faq-item__answer {
+  padding: 0 24px 20px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* ============================================
+   FINAL CTA
+   ============================================ */
+.final-cta {
+  padding: 120px 0;
+}
+
+.final-cta__box {
+  background: linear-gradient(135deg, var(--bg-card), var(--brand-50));
+  border: 1px solid var(--border-accent);
+  box-shadow: 0 4px 24px rgba(7,196,136,0.08);
+  border-radius: 24px;
+  padding: 48px;
+  text-align: center;
+}
+
+.final-cta__box::before {
+  content: '';
+  position: absolute;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: radial-gradient(circle at 50% 100%, var(--accent-glow), transparent 50%);
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+.final-cta__title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.final-cta__desc {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  margin-bottom: 36px;
+  position: relative;
+}
+
+.final-cta__micro {
+  margin-top: 16px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  position: relative;
+}
+.final-cta__micro a {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.footer {
+  padding: 64px 0 32px;
+  border-top: 1px solid var(--border);
+  background: var(--bg-secondary);
+}
+
+.footer__grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 48px;
+}
+
+.footer__brand p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-top: 12px;
+  max-width: 300px;
+}
+
+.footer__col-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 16px;
+  color: var(--text-secondary);
+}
+
+.footer__links li { margin-bottom: 10px; }
+.footer__links a {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  transition: color 0.2s;
+}
+.footer__links a:hover { color: var(--accent); }
+
+.footer__bottom {
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* ============================================
+   GLOBAL MOBILE OVERFLOW PREVENTION
+   ============================================ */
+@media (max-width: 768px) {
+  *, *::before, *::after { max-width: 100vw; }
+  img, svg, video, canvas, iframe { max-width: 100%; height: auto; }
+  .section > .container > * { max-width: 100%; overflow-wrap: break-word; word-wrap: break-word; }
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 1024px) {
+  .hero__content { grid-template-columns: 1fr; gap: 48px; }
+  .hero__visual { max-width: 600px; }
+  .feature-row { grid-template-columns: 1fr; gap: 40px; }
+  .feature-row--reverse .feature-content { order: 1; }
+  .feature-row--reverse .feature-visual { order: 2; }
+  .engine-card--featured { grid-template-columns: 1fr; gap: 32px; }
+  .footer__grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 768px) {
+  html, body { overflow-x: hidden; max-width: 100vw; }
+  .container { padding: 0 20px; max-width: 100%; }
+  .section { padding: 60px 0; }
+  .section-title { font-size: 1.6rem; }
+  .section-subtitle { font-size: 0.9rem; }
+
+  /* === HEADER & PROMO BANNER FIX === */
+  #promo-banner { padding: 10px 16px !important; }
+  #promo-banner a { font-size: .75rem !important; flex-wrap: wrap !important; justify-content: center !important; gap: 4px !important; line-height: 1.4 !important; }
+  #promo-banner a span[style*="background"] { margin-left: 0 !important; margin-top: 4px; }
+
+  .hero { padding: 48px 0 48px; }
+  .hero__title { font-size: 1.8rem; }
+  .hero__desc { font-size: 0.9rem; }
+  .nav { display: none; }
+  .menu-toggle { display: block; font-size: 1.5rem; }
+  .header__actions .btn--ghost { display: none; }
+  .nav__entrar-mobile { display: block !important; font-weight: 700; color: var(--accent) !important; padding: 12px 0; border-top: 1px solid var(--border); margin-top: 4px; }
+  .header__actions .btn { padding: 10px 18px; font-size: 0.85rem; min-height: 44px; white-space: nowrap; }
+
+  /* === GRIDS: forçar coluna única === */
+  .problem-grid, .pillars-grid, .steps-grid,
+  .testimonial-grid, .pricing-grid, .engine-grid { grid-template-columns: 1fr !important; max-width:100% !important; }
+  .pricing-card--featured { transform: none; }
+  .pricing-card--featured:hover { transform: translateY(-4px); }
+  .pricing-card { padding: 28px 20px; }
+  .steps-grid::before { display: none; }
+
+  /* === COMPARISON TABLE === */
+  .comparison-table { font-size: 0.8rem; display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .comparison-table th, .comparison-table td { padding: 10px 12px; white-space: nowrap; }
+
+  /* === CTA & FOOTER === */
+  .final-cta { padding: 60px 0; }
+  .final-cta__box { padding: 28px 20px; }
+  .final-cta__title { font-size: 1.4rem; }
+  .footer__grid { grid-template-columns: 1fr; gap: 32px; }
+  .footer__bottom { flex-direction: column; gap: 8px; text-align: center; }
+
+  /* === FEATURES: areas & SRS === */
+  .areas-preview { grid-template-columns: repeat(5, 1fr); gap: 4px; }
+  .area-col { padding: 12px 4px; }
+  .srs-timeline { flex-wrap: wrap; justify-content: center; gap: 8px; }
+  .srs-connector { display: none; }
+
+  /* === COUNTER GRID === */
+  .counter-grid-responsive { grid-template-columns: repeat(2, 1fr) !important; gap: 24px !important; }
+  .counter-value, .counter-grid-responsive [style*="font-size:3rem"],
+  .counter-grid-responsive span[style*="font-size:3rem"],
+  .counter-grid-responsive div[style*="font-size:3rem"] { font-size: 2.4rem !important; }
+
+  /* === FEATURE VISUALS === */
+  .feature-visual { overflow-x: auto; max-width: 100%; }
+  .feature-row { gap: 32px !important; margin-bottom: 64px !important; }
+
+  /* === CARDS === */
+  .testimonial-card { padding: 24px 20px; }
+  .testimonial-card__quote { font-size: 0.9rem; }
+  .engine-card { padding: 24px 20px; }
+  .engine-card--featured { padding: 24px 20px !important; }
+  .formula-block { padding: 20px 16px; overflow-x: auto; }
+  .formula-block__eq { font-size: 1rem; word-break: break-word; }
+  .formula-block__note { font-size: 0.65rem; word-break: break-word; }
+
+  /* === PRICING CARD MOBILE === */
+  .pricing-card__badge { right: 12px !important; font-size: .65rem !important; padding: 4px 12px !important; max-width: calc(100% - 24px); text-align: center; }
+  .pricing-card__price { font-size: 2.2rem !important; }
+
+  /* === HERO CTA GROUP === */
+  .hero__cta-group { flex-direction: column; width: 100%; }
+  .hero__cta-group .btn { width: 100%; min-height: 48px; text-align: center; }
+
+  /* === FEATURE BAR LABELS (inline width fix) === */
+  .feature-visual [style*="width:100px"] { width: 80px !important; font-size: .7rem !important; }
+
+  /* === PRICING INFO ROW BELOW BUTTON === */
+  .pricing-card [style*="gap:24px"][style*="justify-content:center"] { gap: 12px !important; flex-wrap: wrap !important; font-size: .75rem !important; }
+
+  /* === MOCKUP WINDOW === */
+  .mockup-window__body { padding: 16px; }
+  .mockup-window__url { font-size: 0.65rem; }
+  .dash-card__value { font-size: 1.25rem; }
+  .dash-card__label { font-size: 0.6rem; }
+  .dash-card { padding: 12px; }
+
+  /* === NAV MOBILE OPEN === */
+  .nav--open a { padding: 12px 0; font-size: 1rem; min-height: 44px; display: flex; align-items: center; }
+
+  /* === PILLAR CARDS === */
+  .pillar-card { padding: 28px 20px; }
+  .paper-ref__text { font-size: 0.65rem; word-break: break-word; }
+
+  /* === STEP CARDS === */
+  .step-card__number { width: 64px; height: 64px; font-size: 1.25rem; }
+
+  /* === SRS NODES === */
+  .srs-node__circle { width: 36px; height: 36px; font-size: 0.65rem; }
+
+  /* === AUTH MODAL === */
+  .auth-modal { padding: 28px 20px; margin: 16px; max-width: calc(100% - 32px); }
+}
+
+@media (max-width: 480px) {
+  .container { padding: 0 16px; }
+  .hero__title { font-size: 1.5rem; }
+  .hero__desc { font-size: 0.85rem; }
+  .section-title { font-size: 1.35rem; }
+  .section-subtitle { font-size: 0.85rem; }
+  .counter-grid-responsive { grid-template-columns: repeat(2, 1fr) !important; }
+  .btn--large { padding: 14px 24px; font-size: 0.9rem; }
+  .pricing-toggle { flex-wrap: wrap; justify-content: center; }
+
+  /* === PRICING === */
+  .pricing-card__price { font-size: 2rem !important; }
+  .pricing-card { padding: 24px 16px; }
+  .pricing-card__badge { font-size: .6rem !important; padding: 3px 10px !important; right: 8px !important; }
+
+  /* === FORMULA === */
+  .formula-block { padding: 16px 12px; }
+  .formula-block__eq { font-size: 0.9rem; word-break: break-all; }
+  .formula-block__note { font-size: 0.6rem; }
+
+  /* === ENGINE CARDS === */
+  .engine-card { padding: 20px 16px; }
+  .engine-card__title { font-size: 1.1rem; }
+  .engine-card__desc { font-size: 0.85rem; }
+
+  /* === AREAS === */
+  .areas-preview { gap: 3px; }
+  .area-col { padding: 10px 3px; }
+  .area-col__label { font-size: 0.6rem; }
+
+  /* === COUNTERS === */
+  .counter-value, .counter-grid-responsive [style*="font-size:3rem"],
+  .counter-grid-responsive span[style*="font-size:3rem"],
+  .counter-grid-responsive div[style*="font-size:3rem"] { font-size: 2.2rem !important; }
+
+  /* === FEATURE BAR LABELS (narrow screens) === */
+  .feature-visual [style*="width:100px"] { width: 70px !important; font-size: .65rem !important; }
+
+  /* === TESTIMONIAL === */
+  .testimonial-card__quote { font-size: 0.85rem; }
+
+  /* === FAQ === */
+  .faq-item summary { font-size: 0.9rem; padding: 16px 20px; }
+  .faq-item__answer { font-size: 0.85rem; padding: 0 20px 16px; }
+
+  /* === PROMO BANNER === */
+  #promo-banner a { font-size: .7rem !important; }
+  #promo-banner a span[style*="background"] { font-size: .6rem !important; }
+}
+
+@media (max-width: 360px) {
+  .container { padding: 0 14px; }
+  .section { padding: 48px 0; }
+  .hero { padding: 90px 0 48px; }
+  .hero__title { font-size: 1.3rem; }
+  .hero__desc { font-size: 0.8rem; }
+  .section-title { font-size: 1.15rem; }
+  .section-subtitle { font-size: 0.8rem; }
+  .btn { padding: 12px 20px; font-size: 0.85rem; min-height: 44px; }
+  .btn--large { padding: 14px 22px; font-size: 0.85rem; }
+  .pricing-card { padding: 22px 14px; }
+  .pricing-card__price { font-size: 1.8rem !important; }
+  .engine-card { padding: 18px 14px; }
+  .formula-block { padding: 14px 10px; }
+  .formula-block__eq { font-size: 0.8rem; word-break: break-all; }
+  .areas-preview { grid-template-columns: repeat(5, 1fr); gap: 2px; }
+  .area-col { padding: 8px 2px; font-size: 0.6rem; }
+  .counter-value, .counter-grid-responsive [style*="font-size:3rem"],
+  .counter-grid-responsive span[style*="font-size:3rem"],
+  .counter-grid-responsive div[style*="font-size:3rem"] { font-size: 2rem !important; }
+  .testimonial-card__quote { font-size: 0.8rem; }
+  .faq-item summary { font-size: 0.85rem; padding: 14px 16px; }
+  .faq-item__answer { font-size: 0.8rem; padding: 0 16px 14px; }
+  .footer__grid { gap: 24px; }
+  .feature-visual [style*="width:100px"] { width: 60px !important; font-size: .6rem !important; }
+  .dash-card__value { font-size: 1.1rem; }
+  .dash-preview { gap: 8px; }
+  .mockup-window__body { padding: 12px; }
+  #promo-banner a { font-size: .65rem !important; }
+}
+
+/* Accessibility: respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+  .animate-on-scroll { opacity: 1; transform: none; animation: none; }
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  animation: fallbackShow 0.5s ease 0.8s forwards;
+}
+.animate-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+  animation: none;
+}
+@keyframes fallbackShow {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 30px var(--accent-glow); }
+  50% { box-shadow: 0 0 60px var(--accent-glow); }
+}
+
+/* ============================================
+   AUTH MODAL
+   ============================================ */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.auth-modal {
+  background: var(--bg-card);
+  border-radius: 20px;
+  padding: 40px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+  border: 1px solid var(--border);
+}
+.modal-overlay.active .auth-modal {
+  transform: translateY(0) scale(1);
+}
+
+.auth-modal__close {
+  position: absolute;
+  top: 16px; right: 16px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.5rem;
+  cursor: pointer;
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+.auth-modal__close:hover {
+  background: var(--bg-secondary);
+}
+
+.auth-modal__logo {
+  text-align: center;
+  margin-bottom: 8px;
+}
+.auth-modal__logo .logo__text {
+  font-size: 1.5rem;
+}
+
+.auth-modal__title {
+  text-align: center;
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin-bottom: 32px;
+}
+
+.auth-form { display: flex; flex-direction: column; gap: 16px; }
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.form-field label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+.form-field input {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 10px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  outline: none;
+  transition: border-color 0.2s;
+}
+.form-field input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-dim);
+}
+.form-field input::placeholder {
+  color: var(--text-muted);
+}
+
+.form-field--password {
+  position: relative;
+}
+.form-field--password input {
+  padding-right: 48px;
+}
+.password-toggle {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(calc(-50% + 10px));
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  transition: color 0.2s;
+}
+.password-toggle:hover {
+  color: var(--accent);
+}
+.password-toggle svg {
+  width: 20px;
+  height: 20px;
+}
+
+.auth-form .btn {
+  margin-top: 4px;
+  width: 100%;
+}
+
+.auth-error {
+  background: rgba(239,68,68,0.1);
+  border: 1px solid rgba(239,68,68,0.3);
+  color: #dc2626;
+  font-size: 0.85rem;
+  padding: 10px 14px;
+  border-radius: 8px;
+  display: none;
+}
+.auth-error.visible { display: block; }
+
+.auth-success {
+  background: var(--accent-dim);
+  border: 1px solid var(--border-accent);
+  color: var(--accent);
+  font-size: 0.85rem;
+  padding: 10px 14px;
+  border-radius: 8px;
+  display: none;
+}
+.auth-success.visible { display: block; }
+
+.auth-modal__footer {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+.auth-modal__footer a {
+  color: var(--accent);
+  font-weight: 600;
+  cursor: pointer;
+}
+.auth-modal__footer a:hover {
+  text-decoration: underline;
+}
+
+.auth-modal__forgot {
+  text-align: right;
+  margin-top: -8px;
+}
+.auth-modal__forgot a {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+.auth-modal__forgot a:hover {
+  color: var(--accent);
+}
+
+.password-strength {
+  height: 3px;
+  border-radius: 2px;
+  background: var(--border);
+  margin-top: 4px;
+  overflow: hidden;
+}
+.password-strength__bar {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.3s, background 0.3s;
+  width: 0;
+}
+
+.auth-spinner {
+  display: inline-block;
+  width: 16px; height: 16px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: var(--bg-primary);
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+</style>
+</head>
+<body>
+
+<!-- ============================================
+     HEADER
+     ============================================ -->
+<header class="header" id="header">
+  <div class="header__inner">
+    <a href="#" class="logo">
+      <div class="logo__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round">
+          <path d="M12 2v20M2 12h20"/>
+        </svg>
+      </div>
+      <div class="logo__text">Med<span>Booster</span></div>
+    </a>
+    <nav class="nav">
+      <a href="#ciencia">Ciência</a>
+      <a href="#features">Features</a>
+      <a href="#pricing">Preços</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://app.medbooster.com.br" class="nav__entrar-mobile">Entrar</a>
+    </nav>
+    <div class="header__actions">
+      <a href="https://app.medbooster.com.br" class="btn btn--ghost" style="padding:10px 20px;font-size:.875rem">Entrar</a>
+      <a href="https://checkout.medbooster.com.br" class="btn btn--primary" style="padding:10px 20px;font-size:.875rem">Começar agora</a>
+    </div>
+    <button class="menu-toggle" onclick="document.querySelector('.nav').classList.toggle('nav--open')">☰</button>
+  </div>
+</header>
+
+<!-- ============================================
+     PROMO BANNER — TOP
+     ============================================ -->
+<div id="promo-banner" style="background:linear-gradient(90deg,#07C488 0%,#00cc8e 50%,#07C488 100%);padding:10px 20px;text-align:center;position:relative;z-index:90;margin-top:72px">
+  <a href="#pricing" style="color:#111816;text-decoration:none;font-size:.85rem;font-weight:700;font-family:var(--sans);display:inline-flex;align-items:center;gap:8px">
+    🔥 Lançamento: <span style="text-decoration:underline">R$ 150/mês de desconto</span> no plano anual — por tempo limitado
+    <span style="background:rgba(0,0,0,0.15);border-radius:6px;padding:4px 10px;font-size:.75rem;font-weight:800;margin-left:4px">Ver oferta →</span>
+  </a>
+</div>
+
+<!-- ============================================
+     HERO
+     ============================================ -->
+<section class="hero">
+  <div class="hero__bg-grid"></div>
+  <div class="hero__glow"></div>
+  <div class="container hero__content">
+    <div class="hero__text">
+      <h1 class="hero__title">
+        Sua aprovação na residência começa com <em>ciência, não sorte.</em>
+      </h1>
+      <p class="hero__desc">
+        O MedBooster aprende como você estuda e cria um plano personalizado que se adapta ao seu desempenho real. Cada minuto investido é otimizado para maximizar sua nota — com repetição espaçada, projeção de nota e cronograma inteligente por banca.
+      </p>
+      <div class="hero__cta-group">
+        <a href="https://checkout.medbooster.com.br" class="btn btn--primary btn--large">Começar agora</a>
+        <a href="#ciencia" class="btn btn--ghost btn--large">Ver a ciência</a>
+      </div>
+      <p class="hero__micro">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Garantia de 7 dias. Cancele quando quiser.
+      </p>
+    </div>
+    <div class="hero__visual">
+      <div class="mockup-window">
+        <div class="mockup-window__bar">
+          <div class="mockup-window__dot mockup-window__dot--red"></div>
+          <div class="mockup-window__dot mockup-window__dot--yellow"></div>
+          <div class="mockup-window__dot mockup-window__dot--green"></div>
+          <div class="mockup-window__url">app.medbooster.com.br/dashboard</div>
+        </div>
+        <div class="mockup-window__body">
+          <div class="dash-preview">
+            <div class="dash-card">
+              <div class="dash-card__label">Nota Estimada</div>
+              <div class="dash-card__value dash-card__value--green">78.4</div>
+            </div>
+            <div class="dash-card">
+              <div class="dash-card__label">Retenção Média</div>
+              <div class="dash-card__value dash-card__value--blue">91.2%</div>
+            </div>
+            <div class="dash-card">
+              <div class="dash-card__label">P(Aprovação)</div>
+              <div class="dash-card__value dash-card__value--green">84%</div>
+            </div>
+            <div class="dash-card">
+              <div class="dash-card__label">Questões Feitas</div>
+              <div class="dash-card__value" style="color:var(--text-primary)">1.247</div>
+            </div>
+            <div class="dash-card dash-card--wide">
+              <div class="dash-card__label">Desempenho por Área</div>
+              <div class="dash-bar-chart">
+                <div class="dash-bar" style="height:85%;background:var(--area-cm)"></div>
+                <div class="dash-bar" style="height:62%;background:var(--area-cir)"></div>
+                <div class="dash-bar" style="height:78%;background:var(--area-go)"></div>
+                <div class="dash-bar" style="height:91%;background:var(--area-ped)"></div>
+                <div class="dash-bar" style="height:73%;background:var(--area-prev)"></div>
+              </div>
+              <div style="display:flex;justify-content:space-around;margin-top:6px;text-align:center">
+                <span style="font-size:.6rem;color:var(--area-cm);flex:1">CM</span>
+                <span style="font-size:.6rem;color:var(--area-cir);flex:1">CIR</span>
+                <span style="font-size:.6rem;color:var(--area-go);flex:1">GO</span>
+                <span style="font-size:.6rem;color:var(--area-ped);flex:1">PED</span>
+                <span style="font-size:.6rem;color:var(--area-prev);flex:1">PREV</span>
+              </div>
+            </div>
+            <div class="dash-card dash-card--wide">
+              <div class="dash-card__label">Curva de Retenção</div>
+              <div class="dash-retention-curve">
+                <svg viewBox="0 0 200 60" preserveAspectRatio="none">
+                  <path d="M0,55 C20,52 40,45 60,38 C90,28 120,18 160,10 C180,7 195,5 200,4" fill="none" stroke="rgba(45,212,160,0.5)" stroke-width="2"/>
+                  <path d="M0,55 C20,52 40,45 60,38 C90,28 120,18 160,10 C180,7 195,5 200,4 L200,60 L0,60 Z" fill="url(#curveGrad)" opacity="0.3"/>
+                  <defs>
+                    <linearGradient id="curveGrad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="var(--accent)"/>
+                      <stop offset="100%" stop-color="transparent"/>
+                    </linearGradient>
+                  </defs>
+                  <!-- Review points (retention going UP) -->
+                  <circle cx="15" cy="53" r="3" fill="var(--accent)"/>
+                  <circle cx="55" cy="40" r="3" fill="var(--accent)"/>
+                  <circle cx="115" cy="20" r="3" fill="var(--accent)"/>
+                  <circle cx="175" cy="7" r="3" fill="var(--accent)"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     PROBLEM
+     ============================================ -->
+<section class="section section--alt">
+  <div class="container">
+    <div class="section-label">O problema</div>
+    <h2 class="section-title">Por que estudar mais nem sempre<br>é estudar melhor?</h2>
+    <p class="section-subtitle">A maioria dos métodos de preparação ignora décadas de pesquisa em ciência cognitiva.</p>
+    <div class="problem-grid">
+      <div class="problem-card animate-on-scroll">
+        <div class="problem-card__icon">
+          <svg viewBox="0 0 48 48" width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Brain outline -->
+            <path d="M24 8c-3.5 0-6.5 1.2-8.5 3.5C13.5 14 12.5 17 13 20c.5 3 2 5.5 4 7l1 1v4h12v-4l1-1c2-1.5 3.5-4 4-7 .5-3-.5-6-2.5-8.5C30.5 9.2 27.5 8 24 8z" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M18 32h12v3a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2v-3z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- Arrows entering left -->
+            <path d="M4 14l5 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M8 16l1-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M8 16l3 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M3 20l5 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M7 20l-2-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M7 20l-2 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M4 26l5-2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M8 24l1 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M8 24l3-1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <!-- Dots leaking out bottom-right -->
+            <circle cx="32" cy="30" r="1.2" fill="currentColor" opacity="0.7"/>
+            <circle cx="35" cy="33" r="1" fill="currentColor" opacity="0.5"/>
+            <circle cx="30" cy="34" r="1.4" fill="currentColor" opacity="0.6"/>
+            <circle cx="33" cy="37" r="0.9" fill="currentColor" opacity="0.4"/>
+            <circle cx="28" cy="37" r="1.1" fill="currentColor" opacity="0.5"/>
+            <circle cx="36" cy="38" r="0.8" fill="currentColor" opacity="0.3"/>
+            <circle cx="31" cy="40" r="1" fill="currentColor" opacity="0.35"/>
+            <circle cx="34" cy="42" r="0.7" fill="currentColor" opacity="0.25"/>
+          </svg>
+        </div>
+        <h4 class="problem-card__title">Estudo passivo não fixa</h4>
+        <p class="problem-card__desc">Releitura e resumos dão falsa sensação de aprendizado. Dunlosky et al. (2013) classificaram essas técnicas como de <strong style="color:var(--text-primary)">utilidade baixa</strong>.</p>
+      </div>
+      <div class="problem-card animate-on-scroll">
+        <div class="problem-card__icon">
+          <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="2" fill="none">
+            <polyline points="23 18 13.5 8.5 8.5 13.5 1 6"></polyline><polyline points="17 18 23 18 23 12"></polyline>
+          </svg>
+        </div>
+        <h4 class="problem-card__title">Você esquece 80% em 48h</h4>
+        <p class="problem-card__desc">A curva de esquecimento de Ebbinghaus (1885) mostra que sem revisão espaçada, a retenção despenca exponencialmente.</p>
+      </div>
+      <div class="problem-card animate-on-scroll">
+        <div class="problem-card__icon">
+          <svg viewBox="0 0 48 48" width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Compass circle -->
+            <circle cx="24" cy="24" r="14" stroke="currentColor" stroke-width="2.2"/>
+            <circle cx="24" cy="24" r="11" stroke="currentColor" stroke-width="1.2" opacity="0.4"/>
+            <!-- Tick marks -->
+            <line x1="24" y1="10" x2="24" y2="13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="24" y1="35" x2="24" y2="38" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="10" y1="24" x2="13" y2="24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="35" y1="24" x2="38" y2="24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <!-- Confused spinning needle -->
+            <path d="M24 24l4-8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" opacity="0.9"/>
+            <path d="M24 24l-3 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+            <circle cx="24" cy="24" r="2" fill="currentColor"/>
+            <!-- Circular arrows (spinning) -->
+            <path d="M30 16a9 9 0 0 1 2 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="2 2" opacity="0.5"/>
+            <path d="M18 32a9 9 0 0 1-2-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="2 2" opacity="0.5"/>
+            <!-- Question marks around -->
+            <text x="6" y="14" font-size="7" font-weight="bold" fill="currentColor" font-family="sans-serif" opacity="0.7">?</text>
+            <text x="38" y="14" font-size="6" font-weight="bold" fill="currentColor" font-family="sans-serif" opacity="0.6">?</text>
+            <text x="40" y="32" font-size="7" font-weight="bold" fill="currentColor" font-family="sans-serif" opacity="0.7">?</text>
+            <text x="3" y="36" font-size="6" font-weight="bold" fill="currentColor" font-family="sans-serif" opacity="0.5">?</text>
+            <text x="20" y="5" font-size="5" font-weight="bold" fill="currentColor" font-family="sans-serif" opacity="0.5">?</text>
+            <text x="35" y="44" font-size="5" font-weight="bold" fill="currentColor" font-family="sans-serif" opacity="0.4">?</text>
+          </svg>
+        </div>
+        <h4 class="problem-card__title">Apps genéricos, sem direção</h4>
+        <p class="problem-card__desc">Planners e apps de revisão que tratam todos os temas igual — sem saber o peso de cada banca nem o que você realmente precisa revisar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     ENGINE DETAIL (Ciência por trás)
+     ============================================ -->
+<section class="section section--alt" id="ciencia">
+  <div class="container">
+    <div class="section-label">Sob o capô</div>
+    <h2 class="section-title">IA & ciência de dados: precisão cirúrgica</h2>
+    <p class="section-subtitle">Não usamos IA como buzzword. Cada algoritmo tem paper publicado, cada decisão tem fundamentação.</p>
+    <div class="engine-grid">
+      <div class="engine-card engine-card--featured">
+        <div>
+          <div class="engine-card__tag">Motor de Memória</div>
+          <h3 class="engine-card__title">Motor de Repetição Espaçada Adaptativa</h3>
+          <p class="engine-card__desc">Algoritmo de última geração baseado em pesquisa publicada na KDD 2022 e treinado em centenas de milhões de dados reais. Modela sua curva de esquecimento individual e calcula o momento ideal para cada revisão.</p>
+          <div class="engine-card__papers">
+            <div class="paper-ref">
+              <div class="paper-ref__dot"></div>
+              <div class="paper-ref__text">Ye, J. et al. (2022) — "A Stochastic Shortest Path Algorithm for Optimizing Spaced Repetition Scheduling." KDD 2022</div>
+            </div>
+          </div>
+        </div>
+        <div class="formula-block">
+          <span class="formula-block__label">Curva de esquecimento — Power Law Decay</span>
+          <div class="formula-block__eq">
+            R = (1 + F · t / S)<sup> C</sup>
+          </div>
+          <div class="formula-block__note">R = retrievability (probabilidade de lembrar) &nbsp;|&nbsp; S = stability (força da memória) &nbsp;|&nbsp; t = tempo &nbsp;|&nbsp; F, C = constantes de decaimento</div>
+        </div>
+      </div>
+      <div class="engine-card">
+        <div class="engine-card__tag">Projeção de Nota</div>
+        <h3 class="engine-card__title">Bootstrap Bayesiano</h3>
+        <p class="engine-card__desc">1.000 iterações de bootstrap combinando distribuição histórica de notas (prior) com seu desempenho atual (likelihood) para gerar P(aprovação) com intervalo de confiança de 95%.</p>
+        <div class="engine-card__papers">
+          <div class="paper-ref">
+            <div class="paper-ref__dot"></div>
+            <div class="paper-ref__text">Efron, B. (1979) — "Bootstrap Methods." The Annals of Statistics</div>
+          </div>
+          <div class="paper-ref">
+            <div class="paper-ref__dot"></div>
+            <div class="paper-ref__text">Gelman et al. (2013) — Bayesian Data Analysis, 3rd ed.</div>
+          </div>
+        </div>
+      </div>
+      <div class="engine-card">
+        <div class="engine-card__tag">Sequenciamento</div>
+        <h3 class="engine-card__title">Sequenciamento Inteligente + Carga Cognitiva</h3>
+        <p class="engine-card__desc">Temas organizados por pré-requisitos com sequenciamento progressivo. Estude do fácil ao difícil baseado na Teoria de Carga Cognitiva, garantindo aprendizagem significativa.</p>
+        <div class="engine-card__papers">
+          <div class="paper-ref">
+            <div class="paper-ref__dot"></div>
+            <div class="paper-ref__text">Sweller, J. (1988) — "Cognitive Load During Problem Solving." Cognitive Science</div>
+          </div>
+          <div class="paper-ref">
+            <div class="paper-ref__dot"></div>
+            <div class="paper-ref__text">Ausubel, D.P. (1963) — The Psychology of Meaningful Verbal Learning</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     FEATURES
+     ============================================ -->
+<section class="section" id="features">
+  <div class="container">
+    <div class="section-label">Funcionalidades</div>
+    <h2 class="section-title" style="margin-bottom:64px">Tudo que você precisa,<br>nada que você não precisa.</h2>
+
+    <!-- Feature 1: bancas -->
+    <div class="feature-row animate-on-scroll">
+      <div class="feature-content">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="2" fill="none">
+            <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>
+          </svg>
+        </div>
+        <h3 class="feature-title">Foco na SUA banca</h3>
+        <p class="feature-desc">Questões catalogadas e classificadas por banca, ano, área e leaf (subtema). Você estuda o perfil exato da prova que vai prestar — cada banca tem seus temas recorrentes e nós mapeamos todos eles.</p>
+        <p class="feature-desc" style="font-size:.85rem;color:var(--text-muted);margin-top:4px"><em>Fundamentação: Kornell & Bjork (2008) — espaçamento beneficia tanto memorização quanto transferência conceitual entre domínios.</em></p>
+      </div>
+      <div class="feature-visual">
+        <div style="width:100%">
+          <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap">
+            <span class="badge">USP-SP</span>
+            <span class="badge">UNIFESP</span>
+            <span class="badge">HNMD</span>
+            <span class="badge" style="opacity:.5">UERJ</span>
+            <span class="badge" style="opacity:.5">ENARE</span>
+          </div>
+          <div style="background:var(--bg-secondary);border-radius:10px;padding:16px;border:1px solid var(--border)">
+            <div style="font-size:.7rem;color:var(--text-muted);margin-bottom:12px;text-transform:uppercase;letter-spacing:.08em">Temas mais frequentes — USP-SP</div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;align-items:center;gap:10px">
+                <span style="font-size:.75rem;color:var(--text-secondary);width:100px">Cardiologia</span>
+                <div style="flex:1;height:8px;background:var(--border);border-radius:4px;overflow:hidden"><div style="width:92%;height:100%;background:var(--area-cm);border-radius:4px"></div></div>
+                <span style="font-size:.7rem;font-family:var(--mono);color:var(--area-cm)">92%</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px">
+                <span style="font-size:.75rem;color:var(--text-secondary);width:100px">Infectologia</span>
+                <div style="flex:1;height:8px;background:var(--border);border-radius:4px;overflow:hidden"><div style="width:84%;height:100%;background:var(--area-prev);border-radius:4px"></div></div>
+                <span style="font-size:.7rem;font-family:var(--mono);color:var(--area-prev)">84%</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px">
+                <span style="font-size:.75rem;color:var(--text-secondary);width:100px">Cirurgia Geral</span>
+                <div style="flex:1;height:8px;background:var(--border);border-radius:4px;overflow:hidden"><div style="width:76%;height:100%;background:var(--area-cir);border-radius:4px"></div></div>
+                <span style="font-size:.7rem;font-family:var(--mono);color:var(--area-cir)">76%</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px">
+                <span style="font-size:.75rem;color:var(--text-secondary);width:100px">Obstetrícia</span>
+                <div style="flex:1;height:8px;background:var(--border);border-radius:4px;overflow:hidden"><div style="width:68%;height:100%;background:var(--area-go);border-radius:4px"></div></div>
+                <span style="font-size:.7rem;font-family:var(--mono);color:var(--area-go)">68%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature 2: metrics -->
+    <div class="feature-row feature-row--reverse animate-on-scroll">
+      <div class="feature-content">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="2" fill="none">
+            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline>
+          </svg>
+        </div>
+        <h3 class="feature-title">Saiba sua nota antes da prova</h3>
+        <p class="feature-desc">A IA analisa seu desempenho, projeta sua nota (com IC95%) e calcula a probabilidade de aprovação no ritmo atual. Dashboard com as 5 grandes áreas da medicina codificadas por cor.</p>
+        <p class="feature-desc" style="font-size:.85rem;color:var(--text-muted);margin-top:4px"><em>Design baseado em Wickens (2013) — signal detection e codificação por cores para reduzir carga cognitiva na interpretação de dados.</em></p>
+      </div>
+      <div class="feature-visual">
+        <div class="areas-preview">
+          <div class="area-col">
+            <div class="area-col__bar" style="height:85px;background:var(--area-cm)"></div>
+            <span class="area-col__label" style="color:var(--area-cm)">CM</span>
+            <span style="font-family:var(--mono);font-size:.75rem;font-weight:700">78%</span>
+          </div>
+          <div class="area-col">
+            <div class="area-col__bar" style="height:52px;background:var(--area-cir)"></div>
+            <span class="area-col__label" style="color:var(--area-cir)">CIR</span>
+            <span style="font-family:var(--mono);font-size:.75rem;font-weight:700">62%</span>
+          </div>
+          <div class="area-col">
+            <div class="area-col__bar" style="height:68px;background:var(--area-go)"></div>
+            <span class="area-col__label" style="color:var(--area-go)">GO</span>
+            <span style="font-family:var(--mono);font-size:.75rem;font-weight:700">71%</span>
+          </div>
+          <div class="area-col">
+            <div class="area-col__bar" style="height:92px;background:var(--area-ped)"></div>
+            <span class="area-col__label" style="color:var(--area-ped)">PED</span>
+            <span style="font-family:var(--mono);font-size:.75rem;font-weight:700">88%</span>
+          </div>
+          <div class="area-col">
+            <div class="area-col__bar" style="height:60px;background:var(--area-prev)"></div>
+            <span class="area-col__label" style="color:var(--area-prev)">PREV</span>
+            <span style="font-family:var(--mono);font-size:.75rem;font-weight:700">65%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature 3: SRS timeline -->
+    <div class="feature-row animate-on-scroll">
+      <div class="feature-content">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="2" fill="none">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        </div>
+        <h3 class="feature-title">Revisão no momento exato</h3>
+        <p class="feature-desc">O motor de memória calcula quando você está prestes a esquecer e agenda a revisão nesse ponto. Intervalos crescentes otimizados — de 1 dia a meses — maximizando retenção com mínimo esforço.</p>
+        <p class="feature-desc" style="font-size:.85rem;color:var(--text-muted);margin-top:4px"><em>Rawson & Dunlosky (2011) — intervalos ótimos para retenção durável. Cepeda et al. (2006) — intervalo ótimo = 10-20% do tempo até a prova.</em></p>
+      </div>
+      <div class="feature-visual">
+        <div class="srs-timeline">
+          <div class="srs-node">
+            <div class="srs-node__circle">D1</div>
+            <div class="srs-node__label">1 dia</div>
+          </div>
+          <div class="srs-connector"></div>
+          <div class="srs-node">
+            <div class="srs-node__circle">D3</div>
+            <div class="srs-node__label">3 dias</div>
+          </div>
+          <div class="srs-connector"></div>
+          <div class="srs-node">
+            <div class="srs-node__circle">D8</div>
+            <div class="srs-node__label">8 dias</div>
+          </div>
+          <div class="srs-connector"></div>
+          <div class="srs-node">
+            <div class="srs-node__circle">D21</div>
+            <div class="srs-node__label">21 dias</div>
+          </div>
+          <div class="srs-connector"></div>
+          <div class="srs-node">
+            <div class="srs-node__circle" style="background:var(--accent);color:#ffffff">✓</div>
+            <div class="srs-node__label" style="color:var(--accent);font-weight:700">Fixado</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature 4: price -->
+    <div class="feature-row feature-row--reverse animate-on-scroll">
+      <div class="feature-content">
+        <div class="feature-icon">
+          <svg viewBox="0 0 48 48" width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Open hand -->
+            <path d="M14 36c-2-2-3-5-3-8v-6c0-1 .8-2 2-2s2 1 2 2v6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M15 28v-8c0-1 .8-2 2-2s2 1 2 2v7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M19 27v-9c0-1 .8-2 2-2s2 1 2 2v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M23 27v-7c0-1 .8-2 2-2s2 1 2 2v6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M27 26c2 0 3 1 3 3v2c0 4-3 8-8 9h-4c-3 0-5-1-7-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- Lightbulb above -->
+            <circle cx="28" cy="10" r="5" stroke="currentColor" stroke-width="2"/>
+            <path d="M26 15h4v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-2z" stroke="currentColor" stroke-width="1.5"/>
+            <line x1="28" y1="3" x2="28" y2="1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="34" y1="6" x2="36" y2="5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="22" y1="6" x2="20" y2="5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="35" y1="11" x2="37" y2="11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <!-- Small coin -->
+            <circle cx="38" cy="17" r="4" stroke="currentColor" stroke-width="1.5"/>
+            <text x="36.5" y="19.5" font-size="6" font-weight="bold" fill="currentColor" font-family="sans-serif">$</text>
+          </svg>
+        </div>
+        <h3 class="feature-title">Preço justo, ciência de verdade</h3>
+        <p class="feature-desc">Democratizamos o acesso ao estudo baseado em evidência. O mesmo rigor científico publicado em journals como KDD, Psychological Science e Cognitive Science — num app feito sob medida para residência médica.</p>
+      </div>
+      <div class="feature-visual" style="background:linear-gradient(135deg,var(--bg-card),var(--accent-dim));border-color:var(--border-accent)">
+        <div style="text-align:center">
+          <div style="font-size:3rem;margin-bottom:8px;display:flex;align-items:center;justify-content:center">
+            <svg viewBox="0 0 48 48" width="48" height="48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Open hand -->
+              <path d="M14 36c-2-2-3-5-3-8v-6c0-1 .8-2 2-2s2 1 2 2v6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M15 28v-8c0-1 .8-2 2-2s2 1 2 2v7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M19 27v-9c0-1 .8-2 2-2s2 1 2 2v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M23 27v-7c0-1 .8-2 2-2s2 1 2 2v6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M27 26c2 0 3 1 3 3v2c0 4-3 8-8 9h-4c-3 0-5-1-7-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <!-- Lightbulb -->
+              <circle cx="28" cy="10" r="5" stroke="currentColor" stroke-width="2"/>
+              <path d="M26 15h4v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-2z" stroke="currentColor" stroke-width="1.5"/>
+              <line x1="28" y1="3" x2="28" y2="1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="34" y1="6" x2="36" y2="5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="22" y1="6" x2="20" y2="5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="35" y1="11" x2="37" y2="11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <!-- Small coin -->
+              <circle cx="38" cy="17" r="4" stroke="currentColor" stroke-width="1.5"/>
+              <text x="36.5" y="19.5" font-size="6" font-weight="bold" fill="currentColor" font-family="sans-serif">$</text>
+            </svg>
+          </div>
+          <div style="font-family:var(--mono);font-size:.8rem;color:var(--accent);margin-bottom:4px">ACESSÍVEL</div>
+          <div style="font-size:.9rem;color:var(--text-secondary);max-width:250px">Ciência cognitiva aplicada não deveria ser luxo.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     HOW IT WORKS
+     ============================================ -->
+<section class="section steps">
+  <div class="container">
+    <div style="text-align:center">
+      <div class="section-label" style="justify-content:center">Como funciona</div>
+      <h2 class="section-title">Comece em menos de 2 minutos</h2>
+      <p class="section-subtitle" style="margin:0 auto">Três passos simples para começar a estudar com ciência.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card animate-on-scroll">
+        <div class="step-card__number">1</div>
+        <h4 class="step-card__title">Crie sua conta</h4>
+        <p class="step-card__desc">Rápido e fácil. Escolha seu plano e comece a estudar com ciência.</p>
+      </div>
+      <div class="step-card animate-on-scroll">
+        <div class="step-card__number">2</div>
+        <h4 class="step-card__title">Escolha sua banca</h4>
+        <p class="step-card__desc">Selecione a instituição e comece a resolver questões reais catalogadas.</p>
+      </div>
+      <div class="step-card animate-on-scroll">
+        <div class="step-card__number">3</div>
+        <h4 class="step-card__title">Estude com métricas</h4>
+        <p class="step-card__desc">O motor de memória agenda suas revisões. A IA projeta sua nota. Você ajusta o foco.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     TESTIMONIALS
+     ============================================ -->
+<section class="section section--alt">
+  <div class="container">
+    <div style="text-align:center">
+      <div class="section-label" style="justify-content:center">Depoimentos</div>
+      <h2 class="section-title">Quem usa, aprova.</h2>
+    </div>
+    <div class="testimonial-grid">
+      <div class="testimonial-card animate-on-scroll">
+        <div class="testimonial-card__stars">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.26 17.55 15.49 19.64 23.74 12 18.51 4.36 23.74 6.45 15.49 0 10.26 8.91 10.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.26 17.55 15.49 19.64 23.74 12 18.51 4.36 23.74 6.45 15.49 0 10.26 8.91 10.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.26 17.55 15.49 19.64 23.74 12 18.51 4.36 23.74 6.45 15.49 0 10.26 8.91 10.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.26 17.55 15.49 19.64 23.74 12 18.51 4.36 23.74 6.45 15.49 0 10.26 8.91 10.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.26 17.55 15.49 19.64 23.74 12 18.51 4.36 23.74 6.45 15.49 0 10.26 8.91 10.26 12 2"/></svg>
+        </div>
+        <p class="testimonial-card__quote">"O dashboard de métricas me mostrou que eu estava fraca em GO quando achava que estava bem. Ajustei o foco e passei de primeira."</p>
+        <div class="testimonial-card__author">
+          <div class="testimonial-card__avatar">MS</div>
+          <div>
+            <div class="testimonial-card__name">Mariana S.</div>
+            <div class="testimonial-card__role">Aprovada em Pediatria — USP-SP</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card animate-on-scroll">
+        <div class="testimonial-card__stars">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.26 17.55 15.49 19.64 23.74 12 18.51 4.36 23.74 6.45 15.49 0 10.26 8.91 10.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.26 17.55 15.49 19.64 23.74 12 18.51 4.36 23.74 6.45 15.49 0 10.26 8.91 10.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.26 17.55 15.49 19.64 23.74 12 18.51 4.36 23.74 6.45 15.49 0 10.26 8.91 10.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.26 17.55 15.49 19.64 23.74 12 18.51 4.36 23.74 6.45 15.49 0 10.26 8.91 10.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.26 17.55 15.49 19.64 23.74 12 18.51 4.36 23.74 6.45 15.49 0 10.26 8.91 10.26 12 2"/></svg>
+        </div>
+        <p class="testimonial-card__quote">"A repetição espaçada é outro nível. Eu estudava 6h/dia e esquecia tudo. Com o MedBooster, estudo menos e retenho muito mais."</p>
+        <div class="testimonial-card__author">
+          <div class="testimonial-card__avatar">RM</div>
+          <div>
+            <div class="testimonial-card__name">Ricardo M.</div>
+            <div class="testimonial-card__role">Aprovado em Cirurgia — UNIFESP</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card animate-on-scroll">
+        <div class="testimonial-card__stars">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.26 17.55 15.49 19.64 23.74 12 18.51 4.36 23.74 6.45 15.49 0 10.26 8.91 10.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.26 17.55 15.49 19.64 23.74 12 18.51 4.36 23.74 6.45 15.49 0 10.26 8.91 10.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.26 17.55 15.49 19.64 23.74 12 18.51 4.36 23.74 6.45 15.49 0 10.26 8.91 10.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.26 17.55 15.49 19.64 23.74 12 18.51 4.36 23.74 6.45 15.49 0 10.26 8.91 10.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.26 17.55 15.49 19.64 23.74 12 18.51 4.36 23.74 6.45 15.49 0 10.26 8.91 10.26 12 2"/></svg>
+        </div>
+        <p class="testimonial-card__quote">"Usava Anki + planilha e vivia perdido. Com o MedBooster sei exatamente o que estudar todo dia. A projeção de nota dá uma confiança absurda."</p>
+        <div class="testimonial-card__author">
+          <div class="testimonial-card__avatar">JF</div>
+          <div>
+            <div class="testimonial-card__name">Juliana F.</div>
+            <div class="testimonial-card__role">Aprovada em Clínica Médica — ENARE</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="testimonials-note">* Depoimentos de usuários da versão beta.</p>
+  </div>
+</section>
+
+<!-- ============================================
+     COMPARISON TABLE
+     ============================================ -->
+<section class="section">
+  <div class="container">
+    <div style="text-align:center">
+      <div class="section-label" style="justify-content:center">Comparativo</div>
+      <h2 class="section-title">Por que MedBooster?</h2>
+      <p class="section-subtitle" style="margin:0 auto">Apps genéricos organizam revisão. MedBooster organiza sua aprovação.</p>
+    </div>
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>Funcionalidade</th>
+          <th style="text-align:center">MedBooster</th>
+          <th style="text-align:center">Apps Genéricos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Feito para residência médica</td>
+          <td style="text-align:center"><span class="check">✓</span></td>
+          <td style="text-align:center"><span class="cross">✗</span></td>
+        </tr>
+        <tr>
+          <td>Questões catalogadas por banca e subtema</td>
+          <td style="text-align:center"><span class="check">✓</span></td>
+          <td style="text-align:center"><span class="cross">✗</span></td>
+        </tr>
+        <tr>
+          <td>Repetição espaçada calibrada por desempenho</td>
+          <td style="text-align:center"><span class="check">✓</span></td>
+          <td style="text-align:center"><span class="partial">Genérica</span></td>
+        </tr>
+        <tr>
+          <td>Projeção de nota por banca-alvo</td>
+          <td style="text-align:center"><span class="check">✓</span></td>
+          <td style="text-align:center"><span class="cross">✗</span></td>
+        </tr>
+        <tr>
+          <td>Sequenciamento por pré-requisitos médicos</td>
+          <td style="text-align:center"><span class="check">✓</span></td>
+          <td style="text-align:center"><span class="cross">✗</span></td>
+        </tr>
+        <tr>
+          <td>Simulados periódicos com recalibração</td>
+          <td style="text-align:center"><span class="check">✓</span></td>
+          <td style="text-align:center"><span class="cross">✗</span></td>
+        </tr>
+        <tr>
+          <td>Plano de estudo adaptativo (Mín / Ideal / Perfeito)</td>
+          <td style="text-align:center"><span class="check">✓</span></td>
+          <td style="text-align:center"><span class="partial">Manual</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============================================
+     PRICING
+     ============================================ -->
+<section class="section section--alt" id="pricing">
+  <div class="container">
+    <div style="text-align:center">
+      <div class="section-label" style="justify-content:center">Preço</div>
+      <h2 class="section-title">Estudo baseado em evidência<br>que cabe no bolso</h2>
+      <p class="section-subtitle" style="margin:0 auto">Um plano completo. Tudo que você precisa para passar na residência.</p>
+    </div>
+    <div style="max-width:480px;margin:48px auto 0">
+      <!-- Toggle Anual / Mensal -->
+      <div style="display:flex;justify-content:center;align-items:center;gap:12px;margin-bottom:24px">
+        <button id="btnAnual" onclick="switchPlan('anual')" style="padding:10px 28px;border-radius:12px;font-weight:700;font-size:.95rem;border:2px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer;transition:all .2s;position:relative">
+          Anual
+          <span style="position:absolute;top:-10px;right:-10px;background:#ef4444;color:#fff;font-size:.65rem;padding:2px 8px;border-radius:20px;font-weight:700">-43%</span>
+        </button>
+        <button id="btnMensal" onclick="switchPlan('mensal')" style="padding:10px 28px;border-radius:12px;font-weight:700;font-size:.95rem;border:2px solid var(--border);background:var(--bg-elevated);color:var(--text-muted);cursor:pointer;transition:all .2s">
+          Mensal
+        </button>
+      </div>
+
+      <div class="pricing-card pricing-card--featured animate-on-scroll" style="transform:none">
+        <div class="pricing-card__badge" style="background:linear-gradient(135deg,#07C488,#00cc8e);font-size:.75rem;padding:6px 16px">🔥 Desconto de lançamento — por tempo limitado</div>
+        <div class="pricing-card__name" id="planName">MedBooster — Plano Anual</div>
+        <div class="pricing-card__tagline">Acesso completo à plataforma</div>
+        <div style="margin:16px 0 4px">
+          <span style="font-size:1.1rem;color:var(--text-muted);text-decoration:line-through;font-weight:500">R$ 349,90/mês</span>
+        </div>
+        <div class="pricing-card__price" id="planPrice" style="font-size:2.4rem">R$ 199,90 <span>/mês</span></div>
+        <div id="planSavings" style="background:rgba(7,196,136,0.12);border-radius:8px;padding:10px 16px;margin-bottom:20px;text-align:center">
+          <span style="color:var(--accent);font-weight:700;font-size:1rem">Economia de R$ 150/mês</span>
+          <span style="display:block;color:var(--text-muted);font-size:.8rem;margin-top:2px">R$ 1.800 de desconto no plano anual</span>
+        </div>
+        <div class="pricing-card__features">
+          <div class="pricing-feature"><span class="pricing-feature__check">✓</span> Todas as 28 bancas disponíveis</div>
+          <div class="pricing-feature"><span class="pricing-feature__check">✓</span> Repetição espaçada adaptativa</div>
+          <div class="pricing-feature"><span class="pricing-feature__check">✓</span> Projeção inteligente de nota</div>
+          <div class="pricing-feature"><span class="pricing-feature__check">✓</span> Sequenciamento por pré-requisitos</div>
+          <div class="pricing-feature"><span class="pricing-feature__check">✓</span> Dashboard analítico completo</div>
+          <div class="pricing-feature"><span class="pricing-feature__check">✓</span> Simulados periódicos com recalibração</div>
+          <div class="pricing-feature"><span class="pricing-feature__check">✓</span> Cronograma personalizado por perfil</div>
+          <div class="pricing-feature"><span class="pricing-feature__check">✓</span> Suporte prioritário</div>
+        </div>
+        <a href="https://checkout.medbooster.com.br" class="btn btn--primary" style="width:100%;padding:16px;font-size:1.05rem">Começar agora</a>
+        <div style="display:flex;justify-content:center;gap:24px;margin-top:16px;font-size:.8rem;color:var(--text-muted)">
+          <span>🔒 Dados protegidos</span>
+          <span>↩ Garantia 7 dias</span>
+          <span>✕ Cancele quando quiser</span>
+        </div>
+      </div>
+    </div>
+    <div class="pricing-guarantee">
+      <strong>Garantia de 7 dias.</strong> Não gostou? Devolvemos 100% do seu investimento. Sem perguntas.
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     FAQ
+     ============================================ -->
+<section class="section" id="faq">
+  <div class="container">
+    <div style="text-align:center">
+      <div class="section-label" style="justify-content:center">Dúvidas frequentes</div>
+      <h2 class="section-title">Perguntas & Respostas</h2>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>O que torna a repetição espaçada do MedBooster diferente?</summary>
+        <div class="faq-item__answer">O MedBooster modela a curva de esquecimento individual de cada aluno. Enquanto apps genéricos usam intervalos fixos, nosso motor adapta o intervalo entre revisões especificamente para você — baseado no seu desempenho real, não em uma média genérica. O resultado: você retém mais, estudando menos.</div>
+      </details>
+      <details class="faq-item">
+        <summary>O MedBooster substitui meu método de estudo atual?</summary>
+        <div class="faq-item__answer">O MedBooster não substitui seu cursinho ou material teórico — ele complementa. Focamos nas duas técnicas mais eficazes segundo a ciência: prática ativa com questões e revisão espaçada adaptativa. Use junto com seu método atual e veja seus resultados acelerarem.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Como funciona a projeção de nota?</summary>
+        <div class="faq-item__answer">O MedBooster cruza o histórico real de cada banca com o seu desempenho individual para estimar sua nota provável. Quanto mais você estuda, mais precisa fica a projeção. Você sempre sabe onde está e o que precisa melhorar — sem achismo.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Quais bancas estão disponíveis?</summary>
+        <div class="faq-item__answer">Cobrimos 26 bancas incluindo USP-SP (FUVEST), USP-RP, UNIFESP, HNMD (Marcílio Dias), UERJ, ENAMED/ENARE, Einstein, FAMERP, IAMSPE, SUS-SP, SUS-BA, ABC, PUC-PR, PUC-Sorocaba, AMRIGS, SCM-SP, SCM-BH, UEPA, UESPI, entre outras. São mais de 217 provas catalogadas com mais de 18.000 questões classificadas. Novas provas são adicionadas regularmente.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Posso cancelar a qualquer momento?</summary>
+        <div class="faq-item__answer">Sim. Cancele quando quiser, sem multa. Você também tem 7 dias de garantia total — não gostou, devolvemos 100% do valor investido.</div>
+      </details>
+      <details class="faq-item">
+        <summary>O MedBooster funciona no celular?</summary>
+        <div class="faq-item__answer">Sim! A plataforma é 100% responsiva e funciona perfeitamente no navegador do celular ou tablet. Estude de qualquer lugar, a qualquer hora — o motor de memória sincroniza seu progresso automaticamente entre dispositivos.</div>
+      </details>
+      <details class="faq-item">
+        <summary>O que está incluído no plano?</summary>
+        <div class="faq-item__answer">O MedBooster oferece acesso completo em dois planos: Anual por R$199,90/mês (economia de R$150/mês vs. o valor regular de R$349,90) ou Mensal por R$239,90/mês sem compromisso de longo prazo. Ambos incluem: acesso a todas as 26 bancas e 217+ provas catalogadas, repetição espaçada adaptativa por IA, projeção bayesiana de nota com IC95%, sequenciamento inteligente por pré-requisitos, dashboard analítico completo, simulados periódicos com calibração, cronograma personalizado e suporte prioritário.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Os preços incluem garantia de reembolso?</summary>
+        <div class="faq-item__answer">Sim! Oferecemos garantia de 7 dias. Se o MedBooster não for para você, devolvemos 100% do valor investido sem perguntas. Queremos que você estude com confiança.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     FINAL CTA
+     ============================================ -->
+<section class="final-cta">
+  <div class="container">
+    <div class="final-cta__box">
+      <h2 class="final-cta__title">A residência não espera.<br>Seu preparo também não deveria.</h2>
+      <p class="final-cta__desc">Junte-se aos estudantes que decidiram estudar com ciência, não com achismo.</p>
+      <a href="https://checkout.medbooster.com.br" class="btn btn--primary btn--large" style="position:relative">Começar agora</a>
+      <p class="final-cta__micro">Já tem conta? <a href="https://app.medbooster.com.br" style="color:var(--accent)">Entrar na plataforma →</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     SOCIAL PROOF NUMBERS
+     ============================================ -->
+<section class="section" style="padding:80px 0">
+  <div class="container">
+    <div class="counter-grid-responsive" style="display:grid;grid-template-columns:repeat(4,1fr);gap:32px;text-align:center">
+      <div class="animate-on-scroll">
+        <div class="counter-value" data-target="26" style="font-size:3rem;font-weight:800;color:var(--accent);line-height:1">0</div>
+        <div style="font-size:.9rem;color:var(--text-secondary);margin-top:8px;font-weight:500">Bancas catalogadas</div>
+      </div>
+      <div class="animate-on-scroll">
+        <div style="font-size:3rem;font-weight:800;color:var(--accent);line-height:1"><span class="counter-value" data-target="18000" style="font-size:3rem;font-weight:800;color:var(--accent)">0</span>+</div>
+        <div style="font-size:.9rem;color:var(--text-secondary);margin-top:8px;font-weight:500">Questões catalogadas</div>
+      </div>
+      <div class="animate-on-scroll">
+        <div style="font-size:3rem;font-weight:800;color:var(--accent);line-height:1"><span class="counter-value" data-target="217" style="font-size:3rem;font-weight:800;color:var(--accent)">0</span>+</div>
+        <div style="font-size:.9rem;color:var(--text-secondary);margin-top:8px;font-weight:500">Provas mapeadas</div>
+      </div>
+      <div class="animate-on-scroll">
+        <div style="font-size:3rem;font-weight:800;color:var(--accent);line-height:1"><span class="counter-value" data-target="396" style="font-size:3rem;font-weight:800;color:var(--accent)">0</span></div>
+        <div style="font-size:.9rem;color:var(--text-secondary);margin-top:8px;font-weight:500">Subtemas na taxonomia</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     WHATSAPP FLOATING BUTTON
+     TODO: Substituir 5521999999999 pelo número real quando disponível
+     ============================================ -->
+<a id="whatsappBtn" href="https://wa.me/5521999999999?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20o%20MedBooster" target="_blank" rel="noopener" style="position:fixed;bottom:16px;right:16px;width:52px;height:52px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,.2);z-index:999;transform:scale(0);transition:transform .4s cubic-bezier(.34,1.56,.64,1);cursor:pointer" aria-label="Fale conosco no WhatsApp">
+  <svg width="32" height="32" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- ============================================
+     FOOTER
+     ============================================ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <div class="logo">
+          <div class="logo__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"><path d="M12 2v20M2 12h20"/></svg>
+          </div>
+          <div class="logo__text">Med<span>Booster</span></div>
+        </div>
+        <p>Sistema de estudo adaptativo para residência médica. Ciência cognitiva aplicada à sua aprovação.</p>
+      </div>
+      <div>
+        <div class="footer__col-title">Produto</div>
+        <ul class="footer__links">
+          <li><a href="#">Estudo Adaptativo</a></li>
+          <li><a href="#">Métricas & Dashboard</a></li>
+          <li><a href="#">Repetição Espaçada</a></li>
+          <li><a href="#">Bancas Disponíveis</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer__col-title">Institucional</div>
+        <ul class="footer__links">
+          <li><a href="#">Sobre nós</a></li>
+          <li><a href="#">Fundamentação Científica</a></li>
+          <li><a href="#">Termos de Uso</a></li>
+          <li><a href="#">Privacidade</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer__col-title">Suporte</div>
+        <ul class="footer__links">
+          <li><a href="#">Central de Ajuda</a></li>
+          <li><a href="#">Contato</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 MedBooster. Todos os direitos reservados.</span>
+      <span>Feito para futuros residentes. 🩺</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================
+     AUTH MODAL
+     ============================================ -->
+<div class="modal-overlay" id="authModal">
+  <div class="auth-modal">
+    <button class="auth-modal__close" onclick="closeAuthModal()">&times;</button>
+
+    <div class="auth-modal__logo">
+      <div class="logo" style="justify-content:center">
+        <div class="logo__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"><path d="M12 2v20M2 12h20"/></svg>
+        </div>
+        <div class="logo__text">Med<span>Booster</span></div>
+      </div>
+    </div>
+
+    <!-- LOGIN VIEW -->
+    <div id="loginView">
+      <p class="auth-modal__title">Entre na sua conta</p>
+      <form class="auth-form" onsubmit="handleLogin(event)">
+        <div class="form-field">
+          <label for="loginEmail">Email</label>
+          <input type="email" id="loginEmail" placeholder="seu@email.com" required autocomplete="email">
+        </div>
+        <div class="form-field form-field--password">
+          <label for="loginPassword">Senha</label>
+          <input type="password" id="loginPassword" placeholder="Sua senha" required autocomplete="current-password">
+          <button type="button" class="password-toggle" onclick="togglePassword('loginPassword', this)" aria-label="Mostrar senha">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
+        </div>
+        <div class="auth-modal__forgot">
+          <a onclick="showView('resetView')">Esqueci minha senha</a>
+        </div>
+        <div class="auth-error" id="loginError"></div>
+        <button type="submit" class="btn btn--primary" id="loginBtn">Entrar</button>
+      </form>
+      <div class="auth-modal__footer">
+        Não tem conta? <a onclick="showView('signupView')">Solicitar acesso</a>
+      </div>
+    </div>
+
+    <!-- SIGNUP VIEW -->
+    <div id="signupView" style="display:none">
+      <p class="auth-modal__title">Solicitar acesso</p>
+      <form class="auth-form" onsubmit="handleSignup(event)">
+        <div class="form-field">
+          <label for="signupEmail">Email</label>
+          <input type="email" id="signupEmail" placeholder="seu@email.com" required autocomplete="email">
+        </div>
+        <div class="form-field form-field--password">
+          <label for="signupPassword">Senha</label>
+          <input type="password" id="signupPassword" placeholder="Mínimo 6 caracteres" required minlength="6" autocomplete="new-password" oninput="updateStrength(this.value)">
+          <button type="button" class="password-toggle" onclick="togglePassword('signupPassword', this)" aria-label="Mostrar senha">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
+          <div class="password-strength"><div class="password-strength__bar" id="strengthBar"></div></div>
+        </div>
+        <div class="form-field form-field--password">
+          <label for="signupConfirm">Confirmar senha</label>
+          <input type="password" id="signupConfirm" placeholder="Repita a senha" required autocomplete="new-password">
+          <button type="button" class="password-toggle" onclick="togglePassword('signupConfirm', this)" aria-label="Mostrar senha">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
+        </div>
+        <div class="auth-error" id="signupError"></div>
+        <div class="auth-success" id="signupSuccess"></div>
+        <button type="submit" class="btn btn--primary" id="signupBtn">Solicitar acesso</button>
+      </form>
+      <div class="auth-modal__footer">
+        Já tem conta? <a onclick="showView('loginView')">Entrar</a>
+      </div>
+    </div>
+
+    <!-- RESET VIEW -->
+    <div id="resetView" style="display:none">
+      <p class="auth-modal__title">Recuperar senha</p>
+      <form class="auth-form" onsubmit="handleReset(event)">
+        <div class="form-field">
+          <label for="resetEmail">Email da sua conta</label>
+          <input type="email" id="resetEmail" placeholder="seu@email.com" required autocomplete="email">
+        </div>
+        <div class="auth-error" id="resetError"></div>
+        <div class="auth-success" id="resetSuccess"></div>
+        <button type="submit" class="btn btn--primary" id="resetBtn">Enviar link de recuperação</button>
+      </form>
+      <div class="auth-modal__footer">
+        Lembrou a senha? <a onclick="showView('loginView')">Voltar ao login</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================
+     UI SCRIPTS (independent of Supabase)
+     ============================================ -->
+<script>
+// Header scroll effect
+const header = document.getElementById('header');
+window.addEventListener('scroll', () => {
+  header.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// Scroll animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+// Pricing toggle landing page (anual/mensal)
+function switchPlan(plan) {
+  const btnAnual = document.getElementById('btnAnual');
+  const btnMensal = document.getElementById('btnMensal');
+  const planName = document.getElementById('planName');
+  const planPrice = document.getElementById('planPrice');
+  const planSavings = document.getElementById('planSavings');
+
+  if (plan === 'anual') {
+    btnAnual.style.background = 'var(--accent)';
+    btnAnual.style.borderColor = 'var(--accent)';
+    btnAnual.style.color = '#fff';
+    btnMensal.style.background = 'var(--bg-elevated)';
+    btnMensal.style.borderColor = 'var(--border)';
+    btnMensal.style.color = 'var(--text-muted)';
+    planName.textContent = 'MedBooster — Plano Anual';
+    planPrice.innerHTML = 'R$ 199,90 <span>/mês</span>';
+    planSavings.innerHTML = '<span style="color:var(--accent);font-weight:700;font-size:1rem">Economia de R$ 150/mês</span><span style="display:block;color:var(--text-muted);font-size:.8rem;margin-top:2px">R$ 2.398,80/ano (equivale a R$ 199,90/mês)</span>';
+    planSavings.style.display = 'block';
+  } else {
+    btnMensal.style.background = 'var(--accent)';
+    btnMensal.style.borderColor = 'var(--accent)';
+    btnMensal.style.color = '#fff';
+    btnAnual.style.background = 'var(--bg-elevated)';
+    btnAnual.style.borderColor = 'var(--border)';
+    btnAnual.style.color = 'var(--text-muted)';
+    planName.textContent = 'MedBooster — Plano Mensal';
+    planPrice.innerHTML = 'R$ 239,90 <span>/mês</span>';
+    planSavings.innerHTML = '<span style="color:var(--text-muted);font-weight:600;font-size:.9rem">Sem compromisso — mude para anual e economize R$ 480/ano</span>';
+    planSavings.style.display = 'block';
+  }
+}
+
+// Pricing toggle (monthly/annual)
+let isAnnual = false;
+function togglePricing() {
+  isAnnual = !isAnnual;
+  const dot = document.getElementById('pricingDot');
+  const toggleMonthly = document.getElementById('toggleMonthly');
+  const toggleAnnual = document.getElementById('toggleAnnual');
+  const btn = document.getElementById('pricingToggle');
+
+  if (isAnnual) {
+    dot.style.left = '28px';
+    btn.style.background = 'var(--accent)';
+    btn.style.borderColor = 'var(--accent)';
+    toggleMonthly.style.fontWeight = '500';
+    toggleMonthly.style.color = 'var(--text-muted)';
+    toggleAnnual.style.fontWeight = '600';
+    toggleAnnual.style.color = 'var(--text-primary)';
+  } else {
+    dot.style.left = '2px';
+    btn.style.background = 'var(--bg-elevated)';
+    btn.style.borderColor = 'var(--border)';
+    toggleMonthly.style.fontWeight = '600';
+    toggleMonthly.style.color = 'var(--text-primary)';
+    toggleAnnual.style.fontWeight = '500';
+    toggleAnnual.style.color = 'var(--text-muted)';
+  }
+
+  document.querySelectorAll('.pricing-card__price[data-monthly]').forEach(el => {
+    const price = isAnnual ? el.dataset.annual : el.dataset.monthly;
+    el.innerHTML = `R$ ${price} <span>/mês</span>`;
+  });
+
+  document.querySelectorAll('.pricing-card__save--annual').forEach(el => {
+    el.style.display = isAnnual ? 'block' : 'none';
+  });
+  document.querySelectorAll('.pricing-card__save--monthly').forEach(el => {
+    el.style.display = isAnnual ? 'none' : 'block';
+  });
+}
+
+// Animated counter for social proof
+function animateCounter(el, target, duration) {
+  let start = 0;
+  const step = (timestamp) => {
+    if (!start) start = timestamp;
+    const progress = Math.min((timestamp - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.floor(eased * target).toLocaleString('pt-BR');
+    if (progress < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && !entry.target.dataset.counted) {
+      entry.target.dataset.counted = 'true';
+      const target = parseInt(entry.target.dataset.target);
+      animateCounter(entry.target, target, 2000);
+    }
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('.counter-value').forEach(el => counterObserver.observe(el));
+
+// WhatsApp button smooth entrance
+setTimeout(() => {
+  const wb = document.getElementById('whatsappBtn');
+  if (wb) wb.style.transform = 'scale(1)';
+}, 2000);
+
+// FAQ accordion
+document.querySelectorAll('.faq-item').forEach(item => {
+  item.addEventListener('toggle', function() {
+    if (this.open) {
+      document.querySelectorAll('.faq-item').forEach(other => {
+        if (other !== this) other.removeAttribute('open');
+      });
+    }
+  });
+});
+
+// Mobile nav close on link click
+document.querySelectorAll('.nav a').forEach(link => {
+  link.addEventListener('click', () => {
+    document.querySelector('.nav').classList.remove('nav--open');
+  });
+});
+
+// Checkout section: billing toggle
+const billingToggle = document.getElementById('billingToggle');
+if (billingToggle) {
+  let isBillingAnnual = false;
+
+  billingToggle.addEventListener('click', function() {
+    isBillingAnnual = !isBillingAnnual;
+    this.classList.toggle('active');
+
+    document.querySelectorAll('.checkout-plan-option').forEach(plan => {
+      const monthlyPrice = plan.dataset.monthly;
+      const yearlyPrice = plan.dataset.yearly;
+      const priceEl = plan.querySelector('.checkout-plan-option__price');
+
+      if (isBillingAnnual) {
+        priceEl.textContent = `R$ ${yearlyPrice}`;
+        plan.querySelector('.checkout-plan-option__billing').textContent = '/ano ou R$ ' + (yearlyPrice / 12).toFixed(2) + '/mês';
+      } else {
+        priceEl.textContent = `R$ ${monthlyPrice}`;
+        plan.querySelector('.checkout-plan-option__billing').textContent = '/mês ou R$ ' + (monthlyPrice * 12 * 0.7).toFixed(2) + '/ano';
+      }
+    });
+  });
+
+  // Plan selection
+  document.querySelectorAll('.checkout-plan-option').forEach(plan => {
+    plan.addEventListener('click', function() {
+      document.querySelectorAll('.checkout-plan-option').forEach(p => p.classList.remove('selected'));
+      this.classList.add('selected');
+    });
+  });
+}
+</script>
+
+<!-- ============================================
+     AUTH SCRIPTS (Supabase)
+     ============================================ -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>
+// Supabase client
+const SUPABASE_URL = 'https://jjvtpfffkfcnkeuumesa.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpqdnRwZmZma2ZjbmtldXVtZXNhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwOTAyOTUsImV4cCI6MjA4ODY2NjI5NX0.-MuyQPIRIIKKEkIi2JvA6E0EeO_GvQAxKIBfBbBJrSY';
+const APP_URL = 'https://app.medbooster.com.br';
+
+const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+// Check if already logged in — if on app subdomain, redirect directly
+supabase.auth.getSession().then(({ data: { session } }) => {
+  if (session) {
+    // If user is on app.medbooster.com.br and already has session, go to dashboard
+    if (window.location.hostname === 'app.medbooster.com.br') {
+      return; // Let the app handle it
+    }
+    // On landing page: show "Acessar plataforma" button instead of login
+    const actionsEl = document.querySelector('.header__actions');
+    actionsEl.innerHTML = `
+      <a href="${APP_URL}#access_token=${session.access_token}&refresh_token=${session.refresh_token}&token_type=bearer&type=magiclink" class="btn btn--primary" style="padding:10px 20px;font-size:.875rem">Acessar plataforma</a>
+    `;
+  }
+});
+
+// Modal controls
+function openAuthModal(view) {
+  document.getElementById('authModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+  showView(view || 'loginView');
+}
+function closeAuthModal() {
+  document.getElementById('authModal').classList.remove('active');
+  document.body.style.overflow = '';
+  clearErrors();
+}
+function showView(viewId) {
+  ['loginView','signupView','resetView'].forEach(id => {
+    document.getElementById(id).style.display = id === viewId ? 'block' : 'none';
+  });
+  clearErrors();
+}
+function clearErrors() {
+  document.querySelectorAll('.auth-error, .auth-success').forEach(el => {
+    el.classList.remove('visible');
+    el.textContent = '';
+  });
+}
+function showError(id, msg) {
+  const el = document.getElementById(id);
+  el.textContent = msg;
+  el.classList.add('visible');
+}
+function showSuccess(id, msg) {
+  const el = document.getElementById(id);
+  el.textContent = msg;
+  el.classList.add('visible');
+}
+function setLoading(btnId, loading) {
+  const btn = document.getElementById(btnId);
+  if (loading) {
+    btn.dataset.originalText = btn.textContent;
+    btn.innerHTML = '<span class="auth-spinner"></span>';
+    btn.disabled = true;
+  } else {
+    btn.textContent = btn.dataset.originalText;
+    btn.disabled = false;
+  }
+}
+
+// Close modal on overlay click
+document.getElementById('authModal').addEventListener('click', function(e) {
+  if (e.target === this) closeAuthModal();
+});
+// Close on Escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeAuthModal();
+});
+
+// Toggle password visibility
+function togglePassword(inputId, btn) {
+  const input = document.getElementById(inputId);
+  const isPassword = input.type === 'password';
+  input.type = isPassword ? 'text' : 'password';
+  // Swap icon: eye-open vs eye-off
+  if (isPassword) {
+    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>';
+    btn.setAttribute('aria-label', 'Ocultar senha');
+  } else {
+    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>';
+    btn.setAttribute('aria-label', 'Mostrar senha');
+  }
+}
+
+// Password strength
+function updateStrength(pw) {
+  const bar = document.getElementById('strengthBar');
+  let strength = 0;
+  if (pw.length >= 6) strength++;
+  if (pw.length >= 8) strength++;
+  if (/[A-Z]/.test(pw) && /[a-z]/.test(pw)) strength++;
+  if (/[0-9]/.test(pw)) strength++;
+  if (/[^A-Za-z0-9]/.test(pw)) strength++;
+
+  const colors = ['#ef4444','#f97316','#f59e0b','#22c55e','#2dd4a0'];
+  const widths = ['20%','40%','60%','80%','100%'];
+  bar.style.width = widths[Math.min(strength, 4)];
+  bar.style.background = colors[Math.min(strength, 4)];
+}
+
+// Login handler
+async function handleLogin(e) {
+  e.preventDefault();
+  clearErrors();
+  setLoading('loginBtn', true);
+
+  const email = document.getElementById('loginEmail').value.trim().toLowerCase();
+  const password = document.getElementById('loginPassword').value;
+
+  const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+
+  setLoading('loginBtn', false);
+
+  if (error) {
+    const msg = error.message === 'Invalid login credentials'
+      ? 'Email ou senha incorretos.'
+      : error.message;
+    showError('loginError', msg);
+    return;
+  }
+
+  // Successful login — redirect to app with session tokens
+  // Supabase v2 detects session from URL hash automatically (detectSessionInUrl: true)
+  const { data: { session } } = await supabase.auth.getSession();
+  if (session) {
+    window.location.href = APP_URL + '#access_token=' + session.access_token
+      + '&refresh_token=' + session.refresh_token
+      + '&token_type=bearer&type=magiclink';
+  } else {
+    window.location.href = APP_URL;
+  }
+}
+
+// Signup handler
+async function handleSignup(e) {
+  e.preventDefault();
+  clearErrors();
+
+  const email = document.getElementById('signupEmail').value.trim().toLowerCase();
+  const password = document.getElementById('signupPassword').value;
+  const confirm = document.getElementById('signupConfirm').value;
+
+  if (password !== confirm) {
+    showError('signupError', 'As senhas não coincidem.');
+    return;
+  }
+  if (password.length < 6) {
+    showError('signupError', 'A senha deve ter pelo menos 6 caracteres.');
+    return;
+  }
+
+  setLoading('signupBtn', true);
+
+  const { data, error } = await supabase.auth.signUp({ email, password });
+
+  setLoading('signupBtn', false);
+
+  if (error) {
+    showError('signupError', error.message);
+    return;
+  }
+
+  showSuccess('signupSuccess', 'Conta criada! Aguarde a aprovação do administrador para acessar a plataforma. Você receberá um email quando for aprovado.');
+  document.getElementById('signupBtn').style.display = 'none';
+}
+
+// Reset password handler
+async function handleReset(e) {
+  e.preventDefault();
+  clearErrors();
+  setLoading('resetBtn', true);
+
+  const email = document.getElementById('resetEmail').value.trim().toLowerCase();
+
+  const { error } = await supabase.auth.resetPasswordForEmail(email, {
+    redirectTo: APP_URL
+  });
+
+  setLoading('resetBtn', false);
+
+  if (error) {
+    showError('resetError', error.message);
+    return;
+  }
+
+  showSuccess('resetSuccess', 'Link de recuperação enviado! Verifique seu email.');
+}
+</script>
+
+</body>
+</html>
