@@ -4,7 +4,38 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>MedBooster — Estude para Residência Médica com Ciência</title>
-<meta name="description" content="Sistema de estudo adaptativo para residência médica. Repetição espaçada personalizada, cronograma inteligente e projeção de nota. O MedBooster aprende como você estuda. R$199,90/mês.">
+<meta name="description" content="Pare de esquecer o que você já estudou. O MedBooster é sua mentoria de residência 24/7: diz o que e quando revisar, projeta sua nota por banca e se adapta ao seu ritmo. Teste grátis por 21 dias.">
+<meta name="keywords" content="residência médica, estudo adaptativo, repetição espaçada, FSRS, cronograma residência, provas residência médica, MedBooster">
+<link rel="canonical" href="https://medbooster.com.br">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%2307C488'/><text x='50' y='72' font-size='60' fill='white' text-anchor='middle' font-family='sans-serif' font-weight='bold'>M</text></svg>">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "MedBooster",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Web",
+  "url": "https://medbooster.com.br",
+  "description": "Plataforma de estudo adaptativo para residência médica com repetição espaçada (FSRS v4.5), projeção bayesiana de nota e prática de recuperação ativa.",
+  "offers": {
+    "@type": "Offer",
+    "price": "199.90",
+    "priceCurrency": "BRL"
+  }
+}
+</script>
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://medbooster.com.br">
+<meta property="og:title" content="MedBooster — Estude para Residência Médica com Ciência">
+<meta property="og:description" content="Pare de esquecer o que você já estudou. Mentoria de residência 24/7: diz o que e quando revisar, projeta sua nota por banca. Teste grátis por 21 dias.">
+<meta property="og:image" content="https://medbooster.com.br/og-image.png">
+<meta property="og:locale" content="pt_BR">
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MedBooster — Estude para Residência Médica com Ciência">
+<meta name="twitter:description" content="Pare de esquecer o que você já estudou. Mentoria de residência 24/7 com ciência publicada. Teste grátis por 21 dias.">
+<meta name="twitter:image" content="https://medbooster.com.br/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap&subset=latin" rel="stylesheet"/>
@@ -75,7 +106,7 @@ ul { list-style: none; }
   padding: 0 24px;
 }
 
-.section { padding: 120px 0; }
+.section { padding: 80px 0; }
 .section--alt { background: var(--bg-secondary); }
 
 .badge {
@@ -200,13 +231,6 @@ ul { list-style: none; }
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.testimonial-card__stars svg {
-  width: 16px;
-  height: 16px;
-  display: inline-block;
-  margin-right: 2px;
 }
 
 /* ============================================
@@ -471,42 +495,6 @@ ul { list-style: none; }
   position: absolute;
   inset: 0;
   width: 100%; height: 100%;
-}
-
-/* ============================================
-   CREDIBILITY BAR
-   ============================================ */
-.credbar {
-  padding: 48px 0;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  background: var(--bg-secondary);
-}
-
-.credbar__label {
-  text-align: center;
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: var(--text-muted);
-  margin-bottom: 28px;
-}
-
-.credbar__list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 32px 48px;
-}
-
-.credbar__item {
-  font-size: 1.1rem;
-  font-weight: 800;
-  color: var(--text-muted);
-  opacity: 0.7;
-  color: var(--text-secondary);
-  letter-spacing: 0.02em;
 }
 
 /* ============================================
@@ -922,89 +910,6 @@ ul { list-style: none; }
 }
 
 /* ============================================
-   TESTIMONIALS
-   ============================================ */
-.testimonial-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  margin-top: 48px;
-}
-
-.testimonial-card {
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-  border-radius: 16px;
-  padding: 28px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.testimonial-card__stars {
-  color: var(--area-ped);
-  font-size: 0.9rem;
-  letter-spacing: 2px;
-}
-
-.testimonial-card__quote {
-  font-size: 0.95rem;
-  color: var(--text-secondary);
-  line-height: 1.65;
-  font-style: italic;
-  flex: 1;
-}
-
-.testimonial-card__author {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding-top: 16px;
-  border-top: 1px solid var(--border);
-}
-
-.testimonial-card__avatar {
-  width: 40px; height: 40px;
-  border-radius: 50%;
-  background: var(--brand-50);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--accent);
-}
-
-.testimonial-card__name {
-  font-size: 0.85rem;
-  font-weight: 700;
-}
-.testimonial-card__role {
-  font-size: 0.75rem;
-  color: var(--text-muted);
-}
-
-.testimonials-note {
-  text-align: center;
-  margin-top: 24px;
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  font-style: italic;
-}
-
-.testimonial-card__stars {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  margin-bottom: 12px;
-}
-
-.testimonial-card__stars svg {
-  color: var(--accent);
-  margin: 0 1px;
-}
-
-/* ============================================
    COMPARISON
    ============================================ */
 .comparison-table {
@@ -1364,23 +1269,35 @@ ul { list-style: none; }
   .section-title { font-size: 1.6rem; }
   .section-subtitle { font-size: 0.9rem; }
 
-  /* === HEADER & PROMO BANNER FIX === */
-  #promo-banner { padding: 10px 16px !important; }
-  #promo-banner a { font-size: .75rem !important; flex-wrap: wrap !important; justify-content: center !important; gap: 4px !important; line-height: 1.4 !important; }
-  #promo-banner a span[style*="background"] { margin-left: 0 !important; margin-top: 4px; }
-
-  .hero { padding: 48px 0 48px; }
-  .hero__title { font-size: 1.8rem; }
-  .hero__desc { font-size: 0.9rem; }
+  /* === HEADER MOBILE === */
+  .header { padding: 0 16px; }
+  .header__inner { height: 60px; gap: 8px; }
+  .logo__icon { width: 32px; height: 32px; border-radius: 8px; }
+  .logo__icon svg { width: 18px; height: 18px; }
+  .logo__text { font-size: 1.1rem; }
   .nav { display: none; }
-  .menu-toggle { display: block; font-size: 1.5rem; }
+  .menu-toggle { display: flex; align-items: center; justify-content: center; font-size: 1.4rem; padding: 0; }
   .header__actions .btn--ghost { display: none; }
+  .header__actions { gap: 8px; }
+  .header__actions .btn { padding: 8px 16px; font-size: 0.8rem; min-height: 40px; white-space: nowrap; border-radius: 10px; }
   .nav__entrar-mobile { display: block !important; font-weight: 700; color: var(--accent) !important; padding: 12px 0; border-top: 1px solid var(--border); margin-top: 4px; }
-  .header__actions .btn { padding: 10px 18px; font-size: 0.85rem; min-height: 44px; white-space: nowrap; }
+  .nav--open { top: 60px !important; }
+
+  /* === PROMO BANNER MOBILE === */
+  #promo-banner { padding: 8px 16px !important; margin-top: 60px !important; }
+  #promo-banner a { font-size: .72rem !important; flex-wrap: wrap !important; justify-content: center !important; gap: 4px !important; line-height: 1.4 !important; }
+  #promo-banner a span[style*="background"] { margin-left: 0 !important; margin-top: 2px; font-size: .65rem !important; padding: 3px 8px !important; }
+
+  /* === HERO MOBILE === */
+  .hero { padding: 32px 0 40px; }
+  .hero__title { font-size: 1.75rem; line-height: 1.12; }
+  .hero__desc { font-size: 0.9rem; }
 
   /* === GRIDS: forçar coluna única === */
   .problem-grid, .pillars-grid, .steps-grid,
   .testimonial-grid, .pricing-grid, .engine-grid { grid-template-columns: 1fr !important; max-width:100% !important; }
+  /* Side-by-side pricing → stack on mobile */
+  #pricing .container > div[style*="grid-template-columns"] { grid-template-columns: 1fr !important; }
   .pricing-card--featured { transform: none; }
   .pricing-card--featured:hover { transform: translateY(-4px); }
   .pricing-card { padding: 28px 20px; }
@@ -1414,8 +1331,6 @@ ul { list-style: none; }
   .feature-row { gap: 32px !important; margin-bottom: 64px !important; }
 
   /* === CARDS === */
-  .testimonial-card { padding: 24px 20px; }
-  .testimonial-card__quote { font-size: 0.9rem; }
   .engine-card { padding: 24px 20px; }
   .engine-card--featured { padding: 24px 20px !important; }
   .formula-block { padding: 20px 16px; overflow-x: auto; }
@@ -1498,9 +1413,6 @@ ul { list-style: none; }
   /* === FEATURE BAR LABELS (narrow screens) === */
   .feature-visual [style*="width:100px"] { width: 70px !important; font-size: .65rem !important; }
 
-  /* === TESTIMONIAL === */
-  .testimonial-card__quote { font-size: 0.85rem; }
-
   /* === FAQ === */
   .faq-item summary { font-size: 0.9rem; padding: 16px 20px; }
   .faq-item__answer { font-size: 0.85rem; padding: 0 20px 16px; }
@@ -1513,7 +1425,7 @@ ul { list-style: none; }
 @media (max-width: 360px) {
   .container { padding: 0 14px; }
   .section { padding: 48px 0; }
-  .hero { padding: 90px 0 48px; }
+  .hero { padding: 24px 0 40px; }
   .hero__title { font-size: 1.3rem; }
   .hero__desc { font-size: 0.8rem; }
   .section-title { font-size: 1.15rem; }
@@ -1530,7 +1442,6 @@ ul { list-style: none; }
   .counter-value, .counter-grid-responsive [style*="font-size:3rem"],
   .counter-grid-responsive span[style*="font-size:3rem"],
   .counter-grid-responsive div[style*="font-size:3rem"] { font-size: 2rem !important; }
-  .testimonial-card__quote { font-size: 0.8rem; }
   .faq-item summary { font-size: 0.85rem; padding: 14px 16px; }
   .faq-item__answer { font-size: 0.8rem; padding: 0 16px 14px; }
   .footer__grid { gap: 24px; }
@@ -1790,7 +1701,7 @@ ul { list-style: none; }
      ============================================ -->
 <header class="header" id="header">
   <div class="header__inner">
-    <a href="#" class="logo">
+    <a href="https://medbooster.com.br" class="logo">
       <div class="logo__icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round">
           <path d="M12 2v20M2 12h20"/>
@@ -1807,7 +1718,7 @@ ul { list-style: none; }
     </nav>
     <div class="header__actions">
       <a href="https://app.medbooster.com.br" class="btn btn--ghost" style="padding:10px 20px;font-size:.875rem">Entrar</a>
-      <a href="https://checkout.medbooster.com.br" class="btn btn--primary" style="padding:10px 20px;font-size:.875rem">Começar agora</a>
+      <a href="https://checkout.medbooster.com.br" class="btn btn--primary" style="padding:10px 20px;font-size:.875rem">Teste grátis</a>
     </div>
     <button class="menu-toggle" onclick="document.querySelector('.nav').classList.toggle('nav--open')">☰</button>
   </div>
@@ -1816,10 +1727,10 @@ ul { list-style: none; }
 <!-- ============================================
      PROMO BANNER — TOP
      ============================================ -->
-<div id="promo-banner" style="background:linear-gradient(90deg,#07C488 0%,#00cc8e 50%,#07C488 100%);padding:10px 20px;text-align:center;position:relative;z-index:90;margin-top:72px">
+<div id="promo-banner" style="background:linear-gradient(90deg,#07C488 0%,#00cc8e 50%,#07C488 100%);padding:10px 20px;text-align:center;position:relative;z-index:90;margin-top:72px" class="promo-banner">
   <a href="#pricing" style="color:#111816;text-decoration:none;font-size:.85rem;font-weight:700;font-family:var(--sans);display:inline-flex;align-items:center;gap:8px">
-    🔥 Lançamento: <span style="text-decoration:underline">R$ 150/mês de desconto</span> no plano anual — por tempo limitado
-    <span style="background:rgba(0,0,0,0.15);border-radius:6px;padding:4px 10px;font-size:.75rem;font-weight:800;margin-left:4px">Ver oferta →</span>
+    🔥 Desconto de lançamento — por tempo limitado
+    <span style="background:rgba(0,0,0,0.15);border-radius:6px;padding:4px 10px;font-size:.75rem;font-weight:800;margin-left:4px">Testar grátis →</span>
   </a>
 </div>
 
@@ -1832,19 +1743,23 @@ ul { list-style: none; }
   <div class="container hero__content">
     <div class="hero__text">
       <h1 class="hero__title">
-        Sua aprovação na residência começa com <em>ciência, não sorte.</em>
+        Pare de esquecer o que <em>você já estudou.</em>
       </h1>
       <p class="hero__desc">
-        O MedBooster aprende como você estuda e cria um plano personalizado que se adapta ao seu desempenho real. Cada minuto investido é otimizado para maximizar sua nota — com repetição espaçada, projeção de nota e cronograma inteligente por banca.
+        O MedBooster é sua mentoria de residência 24/7. Diz exatamente o que e quando revisar, projeta sua nota por banca e ajusta o plano a cada resposta sua — tudo com ciência publicada (FSRS v4.5).
       </p>
       <div class="hero__cta-group">
-        <a href="https://checkout.medbooster.com.br" class="btn btn--primary btn--large">Começar agora</a>
-        <a href="#ciencia" class="btn btn--ghost btn--large">Ver a ciência</a>
+        <a href="https://checkout.medbooster.com.br" class="btn btn--primary btn--large">Começar grátis por 21 dias</a>
+        <a href="#ciencia" class="btn btn--ghost btn--large">Como funciona</a>
       </div>
       <p class="hero__micro">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        Garantia de 7 dias. Cancele quando quiser.
+        21 dias grátis. Você só paga se decidir continuar.
       </p>
+      <div class="hero__proof">
+        <span class="badge">📚 Baseado em 12+ estudos peer-reviewed</span>
+        <span class="hero__proof-text">Usado por estudantes de <strong>26 bancas</strong> de residência</span>
+      </div>
     </div>
     <div class="hero__visual">
       <div class="mockup-window">
@@ -1928,23 +1843,10 @@ ul { list-style: none; }
     <div class="problem-grid">
       <div class="problem-card animate-on-scroll">
         <div class="problem-card__icon">
-          <svg viewBox="0 0 48 48" width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Brain outline -->
-            <path d="M24 8c-3.5 0-6.5 1.2-8.5 3.5C13.5 14 12.5 17 13 20c.5 3 2 5.5 4 7l1 1v4h12v-4l1-1c2-1.5 3.5-4 4-7 .5-3-.5-6-2.5-8.5C30.5 9.2 27.5 8 24 8z" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M18 32h12v3a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2v-3z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <!-- Arrows entering left -->
-            <path d="M4 14l5 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M8 16l1-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M8 16l3 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            <path d="M3 20l5 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M7 20l-2-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M7 20l-2 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            <path d="M4 26l5-2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M8 24l1 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M8 24l3-1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            <!-- Dots leaking out bottom-right -->
-            <circle cx="32" cy="30" r="1.2" fill="currentColor" opacity="0.7"/>
-            <circle cx="35" cy="33" r="1" fill="currentColor" opacity="0.5"/>
-            <circle cx="30" cy="34" r="1.4" fill="currentColor" opacity="0.6"/>
-            <circle cx="33" cy="37" r="0.9" fill="currentColor" opacity="0.4"/>
-            <circle cx="28" cy="37" r="1.1" fill="currentColor" opacity="0.5"/>
-            <circle cx="36" cy="38" r="0.8" fill="currentColor" opacity="0.3"/>
-            <circle cx="31" cy="40" r="1" fill="currentColor" opacity="0.35"/>
-            <circle cx="34" cy="42" r="0.7" fill="currentColor" opacity="0.25"/>
+          <!-- Lucide: BookX -->
+          <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/>
+            <path d="m14.5 7-5 5"/><path d="m9.5 7 5 5"/>
           </svg>
         </div>
         <h4 class="problem-card__title">Estudo passivo não fixa</h4>
@@ -1952,8 +1854,10 @@ ul { list-style: none; }
       </div>
       <div class="problem-card animate-on-scroll">
         <div class="problem-card__icon">
-          <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="2" fill="none">
-            <polyline points="23 18 13.5 8.5 8.5 13.5 1 6"></polyline><polyline points="17 18 23 18 23 12"></polyline>
+          <!-- Lucide: BrainCog (memory loss) -->
+          <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a4 4 0 0 0-4 4v1a4 4 0 0 0-.5 7.9L7 22h10l-.5-7.1A4 4 0 0 0 16 7V6a4 4 0 0 0-4-4z"/>
+            <path d="m15 13-3-3-3 3"/>
           </svg>
         </div>
         <h4 class="problem-card__title">Você esquece 80% em 48h</h4>
@@ -1961,29 +1865,10 @@ ul { list-style: none; }
       </div>
       <div class="problem-card animate-on-scroll">
         <div class="problem-card__icon">
-          <svg viewBox="0 0 48 48" width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Compass circle -->
-            <circle cx="24" cy="24" r="14" stroke="currentColor" stroke-width="2.2"/>
-            <circle cx="24" cy="24" r="11" stroke="currentColor" stroke-width="1.2" opacity="0.4"/>
-            <!-- Tick marks -->
-            <line x1="24" y1="10" x2="24" y2="13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            <line x1="24" y1="35" x2="24" y2="38" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            <line x1="10" y1="24" x2="13" y2="24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            <line x1="35" y1="24" x2="38" y2="24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            <!-- Confused spinning needle -->
-            <path d="M24 24l4-8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" opacity="0.9"/>
-            <path d="M24 24l-3 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
-            <circle cx="24" cy="24" r="2" fill="currentColor"/>
-            <!-- Circular arrows (spinning) -->
-            <path d="M30 16a9 9 0 0 1 2 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="2 2" opacity="0.5"/>
-            <path d="M18 32a9 9 0 0 1-2-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="2 2" opacity="0.5"/>
-            <!-- Question marks around -->
-            <text x="6" y="14" font-size="7" font-weight="bold" fill="currentColor" font-family="sans-serif" opacity="0.7">?</text>
-            <text x="38" y="14" font-size="6" font-weight="bold" fill="currentColor" font-family="sans-serif" opacity="0.6">?</text>
-            <text x="40" y="32" font-size="7" font-weight="bold" fill="currentColor" font-family="sans-serif" opacity="0.7">?</text>
-            <text x="3" y="36" font-size="6" font-weight="bold" fill="currentColor" font-family="sans-serif" opacity="0.5">?</text>
-            <text x="20" y="5" font-size="5" font-weight="bold" fill="currentColor" font-family="sans-serif" opacity="0.5">?</text>
-            <text x="35" y="44" font-size="5" font-weight="bold" fill="currentColor" font-family="sans-serif" opacity="0.4">?</text>
+          <!-- Lucide: Compass -->
+          <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
           </svg>
         </div>
         <h4 class="problem-card__title">Apps genéricos, sem direção</h4>
@@ -1998,57 +1883,64 @@ ul { list-style: none; }
      ============================================ -->
 <section class="section section--alt" id="ciencia">
   <div class="container">
-    <div class="section-label">Sob o capô</div>
-    <h2 class="section-title">IA & ciência de dados: precisão cirúrgica</h2>
-    <p class="section-subtitle">Não usamos IA como buzzword. Cada algoritmo tem paper publicado, cada decisão tem fundamentação.</p>
+    <div class="section-label">O que a sua mentoria faz</div>
+    <h2 class="section-title">Sua mentoria para residência</h2>
+    <p class="section-subtitle">Mentores humanos cobram R$500-2.000/mês e atendem 1-2x por semana. O MedBooster faz o mesmo trabalho 24/7, aprende com cada resposta sua e se adapta em tempo real.</p>
     <div class="engine-grid">
       <div class="engine-card engine-card--featured">
         <div>
-          <div class="engine-card__tag">Motor de Memória</div>
-          <h3 class="engine-card__title">Motor de Repetição Espaçada Adaptativa</h3>
-          <p class="engine-card__desc">Algoritmo de última geração baseado em pesquisa publicada na KDD 2022 e treinado em centenas de milhões de dados reais. Modela sua curva de esquecimento individual e calcula o momento ideal para cada revisão.</p>
+          <div class="engine-card__tag">Repetição espaçada adaptativa</div>
+          <h3 class="engine-card__title">Diz exatamente o que e quando revisar</h3>
+          <p class="engine-card__desc">Um bom mentor sabe quando você está prestes a esquecer um tema e manda revisar antes que isso aconteça. O MedBooster faz igual — mas com precisão matemática. Aprende seu ritmo, modela sua memória individual e calcula o momento exato de cada revisão.</p>
           <div class="engine-card__papers">
             <div class="paper-ref">
               <div class="paper-ref__dot"></div>
-              <div class="paper-ref__text">Ye, J. et al. (2022) — "A Stochastic Shortest Path Algorithm for Optimizing Spaced Repetition Scheduling." KDD 2022</div>
+              <div class="paper-ref__text">Baseado em FSRS v4.5 — algoritmo publicado na KDD 2022, treinado em centenas de milhões de dados reais</div>
             </div>
           </div>
         </div>
-        <div class="formula-block">
-          <span class="formula-block__label">Curva de esquecimento — Power Law Decay</span>
-          <div class="formula-block__eq">
-            R = (1 + F · t / S)<sup> C</sup>
-          </div>
-          <div class="formula-block__note">R = retrievability (probabilidade de lembrar) &nbsp;|&nbsp; S = stability (força da memória) &nbsp;|&nbsp; t = tempo &nbsp;|&nbsp; F, C = constantes de decaimento</div>
-        </div>
-      </div>
-      <div class="engine-card">
-        <div class="engine-card__tag">Projeção de Nota</div>
-        <h3 class="engine-card__title">Bootstrap Bayesiano</h3>
-        <p class="engine-card__desc">1.000 iterações de bootstrap combinando distribuição histórica de notas (prior) com seu desempenho atual (likelihood) para gerar P(aprovação) com intervalo de confiança de 95%.</p>
-        <div class="engine-card__papers">
-          <div class="paper-ref">
-            <div class="paper-ref__dot"></div>
-            <div class="paper-ref__text">Efron, B. (1979) — "Bootstrap Methods." The Annals of Statistics</div>
-          </div>
-          <div class="paper-ref">
-            <div class="paper-ref__dot"></div>
-            <div class="paper-ref__text">Gelman et al. (2013) — Bayesian Data Analysis, 3rd ed.</div>
+        <div>
+          <div class="formula-block">
+            <span class="formula-block__label">Modelo de memória FSRS v4.5</span>
+            <div class="formula-block__eq">R = (1 + F · t / S)<sup style="font-size:.7em">C</sup></div>
+            <div class="formula-block__note">R = retenção &nbsp;|&nbsp; F = fator &nbsp;|&nbsp; t = tempo desde última revisão &nbsp;|&nbsp; S = estabilidade &nbsp;|&nbsp; C = decaimento<br>Cada variável se adapta ao <strong>seu</strong> padrão individual de memória.</div>
           </div>
         </div>
       </div>
       <div class="engine-card">
-        <div class="engine-card__tag">Sequenciamento</div>
-        <h3 class="engine-card__title">Sequenciamento Inteligente + Carga Cognitiva</h3>
-        <p class="engine-card__desc">Temas organizados por pré-requisitos com sequenciamento progressivo. Estude do fácil ao difícil baseado na Teoria de Carga Cognitiva, garantindo aprendizagem significativa.</p>
+        <div class="engine-card__tag">Projeção bayesiana</div>
+        <h3 class="engine-card__title">Projeta sua nota antes da prova</h3>
+        <p class="engine-card__desc">Mentores experientes olham seu desempenho e estimam suas chances. O MedBooster faz isso cruzando dados reais de cada banca com o seu progresso — e te mostra sua probabilidade de aprovação com intervalo de confiança.</p>
         <div class="engine-card__papers">
           <div class="paper-ref">
             <div class="paper-ref__dot"></div>
-            <div class="paper-ref__text">Sweller, J. (1988) — "Cognitive Load During Problem Solving." Cognitive Science</div>
+            <div class="paper-ref__text">Projeção bayesiana com 1.000 simulações por banca-alvo</div>
+          </div>
+        </div>
+      </div>
+      <div class="engine-card">
+        <div class="engine-card__tag">Sequenciamento inteligente</div>
+        <h3 class="engine-card__title">Organiza a ordem dos seus estudos</h3>
+        <p class="engine-card__desc">Um mentor ensina do básico ao complexo, respeitando pré-requisitos. O MedBooster sequencia seus temas automaticamente — você estuda na ordem certa, sem pular etapas, do fácil ao difícil.</p>
+        <div class="engine-card__papers">
+          <div class="paper-ref">
+            <div class="paper-ref__dot"></div>
+            <div class="paper-ref__text">Sequenciamento por pré-requisitos baseado em Teoria de Carga Cognitiva (Sweller, 1988)</div>
+          </div>
+        </div>
+      </div>
+      <div class="engine-card">
+        <div class="engine-card__tag">Prática de recuperação ativa</div>
+        <h3 class="engine-card__title">Fortalece sua memória a cada resposta</h3>
+        <p class="engine-card__desc">O ato de tentar lembrar uma informação a consolida na memória de longo prazo melhor que reler ou grifar. Cada questão respondida no MedBooster é um treino ativo de recuperação — a técnica mais eficaz segundo a ciência cognitiva.</p>
+        <div class="engine-card__papers">
+          <div class="paper-ref">
+            <div class="paper-ref__dot"></div>
+            <div class="paper-ref__text">Roediger & Butler (2011) — "The Critical Role of Retrieval Practice in Long-Term Retention"</div>
           </div>
           <div class="paper-ref">
             <div class="paper-ref__dot"></div>
-            <div class="paper-ref__text">Ausubel, D.P. (1963) — The Psychology of Meaningful Verbal Learning</div>
+            <div class="paper-ref__text">Roediger & Karpicke (2006) — "Test-Enhanced Learning" — Psychological Science</div>
           </div>
         </div>
       </div>
@@ -2123,7 +2015,7 @@ ul { list-style: none; }
           </svg>
         </div>
         <h3 class="feature-title">Saiba sua nota antes da prova</h3>
-        <p class="feature-desc">A IA analisa seu desempenho, projeta sua nota (com IC95%) e calcula a probabilidade de aprovação no ritmo atual. Dashboard com as 5 grandes áreas da medicina codificadas por cor.</p>
+        <p class="feature-desc">O MedBooster analisa seu desempenho, projeta sua nota (com IC95%) e calcula a probabilidade de aprovação no ritmo atual. Dashboard com as 5 grandes áreas da medicina codificadas por cor.</p>
         <p class="feature-desc" style="font-size:.85rem;color:var(--text-muted);margin-top:4px"><em>Design baseado em Wickens (2013) — signal detection e codificação por cores para reduzir carga cognitiva na interpretação de dados.</em></p>
       </div>
       <div class="feature-visual">
@@ -2202,52 +2094,31 @@ ul { list-style: none; }
     <div class="feature-row feature-row--reverse animate-on-scroll">
       <div class="feature-content">
         <div class="feature-icon">
-          <svg viewBox="0 0 48 48" width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Open hand -->
-            <path d="M14 36c-2-2-3-5-3-8v-6c0-1 .8-2 2-2s2 1 2 2v6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M15 28v-8c0-1 .8-2 2-2s2 1 2 2v7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M19 27v-9c0-1 .8-2 2-2s2 1 2 2v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M23 27v-7c0-1 .8-2 2-2s2 1 2 2v6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M27 26c2 0 3 1 3 3v2c0 4-3 8-8 9h-4c-3 0-5-1-7-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <!-- Lightbulb above -->
-            <circle cx="28" cy="10" r="5" stroke="currentColor" stroke-width="2"/>
-            <path d="M26 15h4v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-2z" stroke="currentColor" stroke-width="1.5"/>
-            <line x1="28" y1="3" x2="28" y2="1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            <line x1="34" y1="6" x2="36" y2="5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            <line x1="22" y1="6" x2="20" y2="5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            <line x1="35" y1="11" x2="37" y2="11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            <!-- Small coin -->
-            <circle cx="38" cy="17" r="4" stroke="currentColor" stroke-width="1.5"/>
-            <text x="36.5" y="19.5" font-size="6" font-weight="bold" fill="currentColor" font-family="sans-serif">$</text>
+          <!-- Lucide: BadgeDollarSign -->
+          <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/>
+            <path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 18V6"/>
           </svg>
         </div>
-        <h3 class="feature-title">Preço justo, ciência de verdade</h3>
-        <p class="feature-desc">Democratizamos o acesso ao estudo baseado em evidência. O mesmo rigor científico publicado em journals como KDD, Psychological Science e Cognitive Science — num app feito sob medida para residência médica.</p>
+        <h3 class="feature-title">Mentoria por R$199,90/mês</h3>
+        <p class="feature-desc">Mentorias humanas custam R$500-2.000/mês e atendem 1-2x por semana. O MedBooster faz o mesmo trabalho 24/7 — e ainda aprende com cada resposta sua para se adaptar ao seu ritmo. Ciência publicada, preço acessível.</p>
       </div>
       <div class="feature-visual" style="background:linear-gradient(135deg,var(--bg-card),var(--accent-dim));border-color:var(--border-accent)">
-        <div style="text-align:center">
-          <div style="font-size:3rem;margin-bottom:8px;display:flex;align-items:center;justify-content:center">
-            <svg viewBox="0 0 48 48" width="48" height="48" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <!-- Open hand -->
-              <path d="M14 36c-2-2-3-5-3-8v-6c0-1 .8-2 2-2s2 1 2 2v6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M15 28v-8c0-1 .8-2 2-2s2 1 2 2v7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M19 27v-9c0-1 .8-2 2-2s2 1 2 2v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M23 27v-7c0-1 .8-2 2-2s2 1 2 2v6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M27 26c2 0 3 1 3 3v2c0 4-3 8-8 9h-4c-3 0-5-1-7-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <!-- Lightbulb -->
-              <circle cx="28" cy="10" r="5" stroke="currentColor" stroke-width="2"/>
-              <path d="M26 15h4v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-2z" stroke="currentColor" stroke-width="1.5"/>
-              <line x1="28" y1="3" x2="28" y2="1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-              <line x1="34" y1="6" x2="36" y2="5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-              <line x1="22" y1="6" x2="20" y2="5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-              <line x1="35" y1="11" x2="37" y2="11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-              <!-- Small coin -->
-              <circle cx="38" cy="17" r="4" stroke="currentColor" stroke-width="1.5"/>
-              <text x="36.5" y="19.5" font-size="6" font-weight="bold" fill="currentColor" font-family="sans-serif">$</text>
-            </svg>
+        <div style="text-align:center;width:100%">
+          <div style="display:flex;justify-content:center;gap:32px;margin-bottom:20px">
+            <div>
+              <div style="font-size:.7rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px">Mentoria Humana</div>
+              <div style="font-family:var(--mono);font-size:1.6rem;font-weight:700;color:var(--text-muted);text-decoration:line-through">R$ 500-2.000</div>
+              <div style="font-size:.75rem;color:var(--text-muted)">/mês</div>
+            </div>
+            <div style="display:flex;align-items:center;font-size:1.2rem;color:var(--text-muted)">vs</div>
+            <div>
+              <div style="font-size:.7rem;color:var(--accent);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px;font-weight:700">MedBooster</div>
+              <div style="font-family:var(--mono);font-size:1.6rem;font-weight:700;color:var(--accent)">R$ 199,90</div>
+              <div style="font-size:.75rem;color:var(--accent)">/mês</div>
+            </div>
           </div>
-          <div style="font-family:var(--mono);font-size:.8rem;color:var(--accent);margin-bottom:4px">ACESSÍVEL</div>
-          <div style="font-size:.9rem;color:var(--text-secondary);max-width:250px">Ciência cognitiva aplicada não deveria ser luxo.</div>
+          <div style="font-size:.85rem;color:var(--text-secondary);max-width:280px;margin:0 auto">Ciência cognitiva aplicada não deveria ser luxo.</div>
         </div>
       </div>
     </div>
@@ -2268,7 +2139,7 @@ ul { list-style: none; }
       <div class="step-card animate-on-scroll">
         <div class="step-card__number">1</div>
         <h4 class="step-card__title">Crie sua conta</h4>
-        <p class="step-card__desc">Rápido e fácil. Escolha seu plano e comece a estudar com ciência.</p>
+        <p class="step-card__desc">Cadastre-se em 30 segundos. 21 dias grátis para testar tudo.</p>
       </div>
       <div class="step-card animate-on-scroll">
         <div class="step-card__number">2</div>
@@ -2278,75 +2149,35 @@ ul { list-style: none; }
       <div class="step-card animate-on-scroll">
         <div class="step-card__number">3</div>
         <h4 class="step-card__title">Estude com métricas</h4>
-        <p class="step-card__desc">O motor de memória agenda suas revisões. A IA projeta sua nota. Você ajusta o foco.</p>
+        <p class="step-card__desc">Sua mentoria algorítmica agenda revisões, projeta sua nota e ajusta o plano em tempo real.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ============================================
-     TESTIMONIALS
+     POR QUE CRIAMOS O MEDBOOSTER
      ============================================ -->
 <section class="section section--alt">
   <div class="container">
     <div style="text-align:center">
-      <div class="section-label" style="justify-content:center">Depoimentos</div>
-      <h2 class="section-title">Quem usa, aprova.</h2>
+      <div class="section-label" style="justify-content:center">A história</div>
+      <h2 class="section-title">Por que criamos o MedBooster</h2>
     </div>
-    <div class="testimonial-grid">
-      <div class="testimonial-card animate-on-scroll">
-        <div class="testimonial-card__stars">
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.26 17.55 15.49 19.64 23.74 12 18.51 4.36 23.74 6.45 15.49 0 10.26 8.91 10.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.26 17.55 15.49 19.64 23.74 12 18.51 4.36 23.74 6.45 15.49 0 10.26 8.91 10.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.26 17.55 15.49 19.64 23.74 12 18.51 4.36 23.74 6.45 15.49 0 10.26 8.91 10.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.26 17.55 15.49 19.64 23.74 12 18.51 4.36 23.74 6.45 15.49 0 10.26 8.91 10.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.26 17.55 15.49 19.64 23.74 12 18.51 4.36 23.74 6.45 15.49 0 10.26 8.91 10.26 12 2"/></svg>
-        </div>
-        <p class="testimonial-card__quote">"O dashboard de métricas me mostrou que eu estava fraca em GO quando achava que estava bem. Ajustei o foco e passei de primeira."</p>
-        <div class="testimonial-card__author">
-          <div class="testimonial-card__avatar">MS</div>
-          <div>
-            <div class="testimonial-card__name">Mariana S.</div>
-            <div class="testimonial-card__role">Aprovada em Pediatria — USP-SP</div>
-          </div>
+    <div style="max-width:720px;margin:40px auto 0;background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:36px 32px">
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px">
+        <div style="width:52px;height:52px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.1rem;flex-shrink:0">BF</div>
+        <div>
+          <div style="font-weight:700;font-size:1rem">Bernardo Fernandes</div>
+          <div style="font-size:.8rem;color:var(--text-muted)">Idealizador do MedBooster — 5o ano de Medicina, IDOMED (RJ)</div>
         </div>
       </div>
-      <div class="testimonial-card animate-on-scroll">
-        <div class="testimonial-card__stars">
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.26 17.55 15.49 19.64 23.74 12 18.51 4.36 23.74 6.45 15.49 0 10.26 8.91 10.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.26 17.55 15.49 19.64 23.74 12 18.51 4.36 23.74 6.45 15.49 0 10.26 8.91 10.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.26 17.55 15.49 19.64 23.74 12 18.51 4.36 23.74 6.45 15.49 0 10.26 8.91 10.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.26 17.55 15.49 19.64 23.74 12 18.51 4.36 23.74 6.45 15.49 0 10.26 8.91 10.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.26 17.55 15.49 19.64 23.74 12 18.51 4.36 23.74 6.45 15.49 0 10.26 8.91 10.26 12 2"/></svg>
-        </div>
-        <p class="testimonial-card__quote">"A repetição espaçada é outro nível. Eu estudava 6h/dia e esquecia tudo. Com o MedBooster, estudo menos e retenho muito mais."</p>
-        <div class="testimonial-card__author">
-          <div class="testimonial-card__avatar">RM</div>
-          <div>
-            <div class="testimonial-card__name">Ricardo M.</div>
-            <div class="testimonial-card__role">Aprovado em Cirurgia — UNIFESP</div>
-          </div>
-        </div>
-      </div>
-      <div class="testimonial-card animate-on-scroll">
-        <div class="testimonial-card__stars">
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.26 17.55 15.49 19.64 23.74 12 18.51 4.36 23.74 6.45 15.49 0 10.26 8.91 10.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.26 17.55 15.49 19.64 23.74 12 18.51 4.36 23.74 6.45 15.49 0 10.26 8.91 10.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.26 17.55 15.49 19.64 23.74 12 18.51 4.36 23.74 6.45 15.49 0 10.26 8.91 10.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.26 17.55 15.49 19.64 23.74 12 18.51 4.36 23.74 6.45 15.49 0 10.26 8.91 10.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.26 17.55 15.49 19.64 23.74 12 18.51 4.36 23.74 6.45 15.49 0 10.26 8.91 10.26 12 2"/></svg>
-        </div>
-        <p class="testimonial-card__quote">"Usava Anki + planilha e vivia perdido. Com o MedBooster sei exatamente o que estudar todo dia. A projeção de nota dá uma confiança absurda."</p>
-        <div class="testimonial-card__author">
-          <div class="testimonial-card__avatar">JF</div>
-          <div>
-            <div class="testimonial-card__name">Juliana F.</div>
-            <div class="testimonial-card__role">Aprovada em Clínica Médica — ENARE</div>
-          </div>
-        </div>
-      </div>
+      <p style="font-size:.95rem;color:var(--text-secondary);line-height:1.75;margin-bottom:16px">Investi muito dinheiro no meu cursinho e percebi que meu problema não era falta de conteúdo — era não reter o que já tinha estudado. Assistia aulas, fazia questões, mas quando chegava a revisão geral, tinha esquecido metade.</p>
+      <p style="font-size:.95rem;color:var(--text-secondary);line-height:1.75;margin-bottom:16px">Queria um mentor que me dissesse exatamente <strong style="color:var(--text-primary)">O QUE</strong> e <strong style="color:var(--text-primary)">QUANDO</strong> revisar. Mas mentorias estavam muito fora do meu orçamento.</p>
+      <p style="font-size:.95rem;color:var(--text-secondary);line-height:1.75;margin-bottom:16px">Foi quando decidi que, se essa ferramenta não existia, eu ia criar. Mergulhei na pesquisa, encontrei o FSRS — o algoritmo de repetição espaçada mais avançado do mundo, publicado na KDD 2022 — e reuni um time de desenvolvedores e analistas de dados para transformar a ideia em realidade.</p>
+      <p style="font-size:.95rem;color:var(--text-secondary);line-height:1.75;margin-bottom:16px">O resultado é o MedBooster: uma mentoria algorítmica que faz o mesmo trabalho de um mentor humano — mas 24/7, com precisão matemática, baseada em ciência publicada, e por uma fração do preço.</p>
+      <p style="font-size:.95rem;color:var(--text-secondary);line-height:1.75">Construí primeiro para mim. Quando vi que funcionava, percebi que milhares de estudantes tinham a mesma dor. Se você já investe em cursinho mas sente que esquece mais do que deveria — o MedBooster foi feito para você.</p>
     </div>
-    <p class="testimonials-note">* Depoimentos de usuários da versão beta.</p>
   </div>
 </section>
 
@@ -2357,52 +2188,52 @@ ul { list-style: none; }
   <div class="container">
     <div style="text-align:center">
       <div class="section-label" style="justify-content:center">Comparativo</div>
-      <h2 class="section-title">Por que MedBooster?</h2>
-      <p class="section-subtitle" style="margin:0 auto">Apps genéricos organizam revisão. MedBooster organiza sua aprovação.</p>
+      <h2 class="section-title">MedBooster vs Mentoria Humana</h2>
+      <p class="section-subtitle" style="margin:0 auto">O mesmo trabalho de um mentor — mas disponível 24/7 e por uma fração do preço.</p>
     </div>
     <table class="comparison-table">
       <thead>
         <tr>
-          <th>Funcionalidade</th>
+          <th>O que um mentor faz</th>
           <th style="text-align:center">MedBooster</th>
-          <th style="text-align:center">Apps Genéricos</th>
+          <th style="text-align:center">Mentoria Humana</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>Feito para residência médica</td>
-          <td style="text-align:center"><span class="check">✓</span></td>
-          <td style="text-align:center"><span class="cross">✗</span></td>
+          <td>Diz o que e quando revisar</td>
+          <td style="text-align:center"><span class="check">✓ 24/7, automático</span></td>
+          <td style="text-align:center"><span class="partial">1-2x/semana</span></td>
         </tr>
         <tr>
-          <td>Questões catalogadas por banca e subtema</td>
-          <td style="text-align:center"><span class="check">✓</span></td>
-          <td style="text-align:center"><span class="cross">✗</span></td>
+          <td>Adapta o plano ao seu desempenho</td>
+          <td style="text-align:center"><span class="check">✓ A cada resposta</span></td>
+          <td style="text-align:center"><span class="partial">A cada encontro</span></td>
         </tr>
         <tr>
-          <td>Repetição espaçada calibrada por desempenho</td>
-          <td style="text-align:center"><span class="check">✓</span></td>
-          <td style="text-align:center"><span class="partial">Genérica</span></td>
+          <td>Projeta sua nota por banca</td>
+          <td style="text-align:center"><span class="check">✓ Com IC95%</span></td>
+          <td style="text-align:center"><span class="partial">Estimativa subjetiva</span></td>
         </tr>
         <tr>
-          <td>Projeção de nota por banca-alvo</td>
+          <td>Organiza ordem dos estudos</td>
+          <td style="text-align:center"><span class="check">✓ Por pré-requisitos</span></td>
           <td style="text-align:center"><span class="check">✓</span></td>
-          <td style="text-align:center"><span class="cross">✗</span></td>
         </tr>
         <tr>
-          <td>Sequenciamento por pré-requisitos médicos</td>
-          <td style="text-align:center"><span class="check">✓</span></td>
-          <td style="text-align:center"><span class="cross">✗</span></td>
+          <td>Escolha de ritmo (Mín / Ideal / Perfeito)</td>
+          <td style="text-align:center"><span class="check">✓ Você escolhe</span></td>
+          <td style="text-align:center"><span class="cross">✗ Fixo</span></td>
         </tr>
         <tr>
-          <td>Simulados periódicos com recalibração</td>
-          <td style="text-align:center"><span class="check">✓</span></td>
-          <td style="text-align:center"><span class="cross">✗</span></td>
+          <td>Disponibilidade</td>
+          <td style="text-align:center"><span class="check">✓ 24/7, offline</span></td>
+          <td style="text-align:center"><span class="partial">Horário agendado</span></td>
         </tr>
         <tr>
-          <td>Plano de estudo adaptativo (Mín / Ideal / Perfeito)</td>
-          <td style="text-align:center"><span class="check">✓</span></td>
-          <td style="text-align:center"><span class="partial">Manual</span></td>
+          <td>Preço mensal</td>
+          <td style="text-align:center"><span class="check" style="font-weight:700">R$ 199,90</span></td>
+          <td style="text-align:center"><span class="partial">R$ 500-2.000</span></td>
         </tr>
       </tbody>
     </table>
@@ -2416,35 +2247,27 @@ ul { list-style: none; }
   <div class="container">
     <div style="text-align:center">
       <div class="section-label" style="justify-content:center">Preço</div>
-      <h2 class="section-title">Estudo baseado em evidência<br>que cabe no bolso</h2>
-      <p class="section-subtitle" style="margin:0 auto">Um plano completo. Tudo que você precisa para passar na residência.</p>
+      <h2 class="section-title">Mentoria de residência<br>que cabe no bolso</h2>
+      <p class="section-subtitle" style="margin:0 auto">Tudo que um mentor faz por você — por uma fração do preço.</p>
     </div>
-    <div style="max-width:480px;margin:48px auto 0">
-      <!-- Toggle Anual / Mensal -->
-      <div style="display:flex;justify-content:center;align-items:center;gap:12px;margin-bottom:24px">
-        <button id="btnAnual" onclick="switchPlan('anual')" style="padding:10px 28px;border-radius:12px;font-weight:700;font-size:.95rem;border:2px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer;transition:all .2s;position:relative">
-          Anual
-          <span style="position:absolute;top:-10px;right:-10px;background:#ef4444;color:#fff;font-size:.65rem;padding:2px 8px;border-radius:20px;font-weight:700">-43%</span>
-        </button>
-        <button id="btnMensal" onclick="switchPlan('mensal')" style="padding:10px 28px;border-radius:12px;font-weight:700;font-size:.95rem;border:2px solid var(--border);background:var(--bg-elevated);color:var(--text-muted);cursor:pointer;transition:all .2s">
-          Mensal
-        </button>
-      </div>
+    <!-- Side-by-side pricing cards -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:820px;margin:48px auto 0;align-items:start">
 
+      <!-- ANUAL (destaque) -->
       <div class="pricing-card pricing-card--featured animate-on-scroll" style="transform:none">
-        <div class="pricing-card__badge" style="background:linear-gradient(135deg,#07C488,#00cc8e);font-size:.75rem;padding:6px 16px">🔥 Desconto de lançamento — por tempo limitado</div>
-        <div class="pricing-card__name" id="planName">MedBooster — Plano Anual</div>
-        <div class="pricing-card__tagline">Acesso completo à plataforma</div>
+        <div class="pricing-card__badge" style="background:linear-gradient(135deg,#07C488,#00cc8e);font-size:.75rem;padding:6px 16px">Mais popular</div>
+        <div class="pricing-card__name">Plano Anual</div>
+        <div class="pricing-card__tagline">Mentoria completa</div>
         <div style="margin:16px 0 4px">
-          <span style="font-size:1.1rem;color:var(--text-muted);text-decoration:line-through;font-weight:500">R$ 349,90/mês</span>
+          <span style="font-size:1rem;color:var(--text-muted);text-decoration:line-through;font-weight:500">R$ 299,90/mês</span>
         </div>
-        <div class="pricing-card__price" id="planPrice" style="font-size:2.4rem">R$ 199,90 <span>/mês</span></div>
-        <div id="planSavings" style="background:rgba(7,196,136,0.12);border-radius:8px;padding:10px 16px;margin-bottom:20px;text-align:center">
-          <span style="color:var(--accent);font-weight:700;font-size:1rem">Economia de R$ 150/mês</span>
-          <span style="display:block;color:var(--text-muted);font-size:.8rem;margin-top:2px">R$ 1.800 de desconto no plano anual</span>
+        <div class="pricing-card__price" style="font-size:2.4rem">R$ 199,90 <span>/mês</span></div>
+        <div style="background:rgba(7,196,136,0.12);border-radius:8px;padding:10px 16px;margin-bottom:20px;text-align:center">
+          <span style="color:var(--accent);font-weight:700;font-size:.95rem">Economia de R$ 100/mês</span>
+          <span style="display:block;color:var(--text-muted);font-size:.8rem;margin-top:2px">R$ 2.398,80/ano (R$ 1.200 de economia)</span>
         </div>
         <div class="pricing-card__features">
-          <div class="pricing-feature"><span class="pricing-feature__check">✓</span> Todas as 28 bancas disponíveis</div>
+          <div class="pricing-feature"><span class="pricing-feature__check">✓</span> Todas as 26 bancas disponíveis</div>
           <div class="pricing-feature"><span class="pricing-feature__check">✓</span> Repetição espaçada adaptativa</div>
           <div class="pricing-feature"><span class="pricing-feature__check">✓</span> Projeção inteligente de nota</div>
           <div class="pricing-feature"><span class="pricing-feature__check">✓</span> Sequenciamento por pré-requisitos</div>
@@ -2453,16 +2276,38 @@ ul { list-style: none; }
           <div class="pricing-feature"><span class="pricing-feature__check">✓</span> Cronograma personalizado por perfil</div>
           <div class="pricing-feature"><span class="pricing-feature__check">✓</span> Suporte prioritário</div>
         </div>
-        <a href="https://checkout.medbooster.com.br" class="btn btn--primary" style="width:100%;padding:16px;font-size:1.05rem">Começar agora</a>
-        <div style="display:flex;justify-content:center;gap:24px;margin-top:16px;font-size:.8rem;color:var(--text-muted)">
-          <span>🔒 Dados protegidos</span>
-          <span>↩ Garantia 7 dias</span>
-          <span>✕ Cancele quando quiser</span>
+        <a href="https://checkout.medbooster.com.br" class="btn btn--primary" style="width:100%;padding:16px;font-size:1.05rem">Começar grátis por 21 dias</a>
+        <div style="text-align:center;margin-top:12px;font-size:.78rem;color:var(--text-muted)">Você só paga depois dos 21 dias. Cancele antes e não paga nada.</div>
+      </div>
+
+      <!-- MENSAL -->
+      <div class="pricing-card animate-on-scroll" style="transform:none">
+        <div class="pricing-card__name" style="margin-top:12px">Plano Mensal</div>
+        <div class="pricing-card__tagline">Sem compromisso</div>
+        <div style="margin:16px 0 4px">
+          <span style="font-size:1rem;color:var(--text-muted);text-decoration:line-through;font-weight:500">R$ 299,90/mês</span>
         </div>
+        <div class="pricing-card__price" style="font-size:2.4rem">R$ 239,90 <span>/mês</span></div>
+        <div style="background:rgba(0,0,0,0.03);border-radius:8px;padding:10px 16px;margin-bottom:20px;text-align:center">
+          <span style="color:var(--text-muted);font-weight:600;font-size:.85rem">No anual, você economiza R$ 480/ano</span>
+        </div>
+        <div class="pricing-card__features">
+          <div class="pricing-feature"><span class="pricing-feature__check">✓</span> Todas as 26 bancas disponíveis</div>
+          <div class="pricing-feature"><span class="pricing-feature__check">✓</span> Repetição espaçada adaptativa</div>
+          <div class="pricing-feature"><span class="pricing-feature__check">✓</span> Projeção inteligente de nota</div>
+          <div class="pricing-feature"><span class="pricing-feature__check">✓</span> Sequenciamento por pré-requisitos</div>
+          <div class="pricing-feature"><span class="pricing-feature__check">✓</span> Dashboard analítico completo</div>
+          <div class="pricing-feature"><span class="pricing-feature__check">✓</span> Simulados periódicos com recalibração</div>
+          <div class="pricing-feature"><span class="pricing-feature__check">✓</span> Cronograma personalizado por perfil</div>
+          <div class="pricing-feature"><span class="pricing-feature__check">✓</span> Suporte prioritário</div>
+        </div>
+        <a href="https://checkout.medbooster.com.br" class="btn btn--ghost" style="width:100%;padding:16px;font-size:1.05rem">Começar grátis por 21 dias</a>
+        <div style="text-align:center;margin-top:12px;font-size:.78rem;color:var(--text-muted)">Você só paga depois dos 21 dias. Cancele antes e não paga nada.</div>
       </div>
     </div>
+    <!-- Garantia de dupla camada — framing claro e sequencial -->
     <div class="pricing-guarantee">
-      <strong>Garantia de 7 dias.</strong> Não gostou? Devolvemos 100% do seu investimento. Sem perguntas.
+      <strong>Risco zero, em duas camadas:</strong> Teste grátis por 21 dias sem pagar nada. Se decidir assinar e mudar de ideia, devolvemos 100% nos primeiros 7 dias após a cobrança.
     </div>
   </div>
 </section>
@@ -2484,7 +2329,7 @@ ul { list-style: none; }
       </details>
       <details class="faq-item">
         <summary>O MedBooster substitui meu método de estudo atual?</summary>
-        <div class="faq-item__answer">O MedBooster não substitui seu cursinho ou material teórico — ele complementa. Focamos nas duas técnicas mais eficazes segundo a ciência: prática ativa com questões e revisão espaçada adaptativa. Use junto com seu método atual e veja seus resultados acelerarem.</div>
+        <div class="faq-item__answer">O MedBooster é uma mentoria que complementa seu cursinho. Seu curso ensina o conteúdo — o MedBooster garante que você retenha tudo, dizendo exatamente quando e o que revisar. É como ter um mentor dedicado à sua memorização, 24/7.</div>
       </details>
       <details class="faq-item">
         <summary>Como funciona a projeção de nota?</summary>
@@ -2496,7 +2341,7 @@ ul { list-style: none; }
       </details>
       <details class="faq-item">
         <summary>Posso cancelar a qualquer momento?</summary>
-        <div class="faq-item__answer">Sim. Cancele quando quiser, sem multa. Você também tem 7 dias de garantia total — não gostou, devolvemos 100% do valor investido.</div>
+        <div class="faq-item__answer">Sim. Nos 21 dias grátis, cancele e não paga nada. Depois de assinar, cancele quando quiser — sem multa. Ainda oferecemos 7 dias de reembolso total após a primeira cobrança, caso mude de ideia.</div>
       </details>
       <details class="faq-item">
         <summary>O MedBooster funciona no celular?</summary>
@@ -2504,11 +2349,11 @@ ul { list-style: none; }
       </details>
       <details class="faq-item">
         <summary>O que está incluído no plano?</summary>
-        <div class="faq-item__answer">O MedBooster oferece acesso completo em dois planos: Anual por R$199,90/mês (economia de R$150/mês vs. o valor regular de R$349,90) ou Mensal por R$239,90/mês sem compromisso de longo prazo. Ambos incluem: acesso a todas as 26 bancas e 217+ provas catalogadas, repetição espaçada adaptativa por IA, projeção bayesiana de nota com IC95%, sequenciamento inteligente por pré-requisitos, dashboard analítico completo, simulados periódicos com calibração, cronograma personalizado e suporte prioritário.</div>
+        <div class="faq-item__answer">Você começa com 21 dias grátis para testar tudo — sem compromisso. Depois, escolhe entre o Plano Anual (R$199,90/mês) ou Mensal (R$239,90/mês). Ambos incluem acesso completo: todas as 26 bancas, 217+ provas catalogadas, repetição espaçada adaptativa, projeção de nota, sequenciamento por pré-requisitos, dashboard analítico, simulados periódicos, cronograma personalizado e suporte prioritário.</div>
       </details>
       <details class="faq-item">
-        <summary>Os preços incluem garantia de reembolso?</summary>
-        <div class="faq-item__answer">Sim! Oferecemos garantia de 7 dias. Se o MedBooster não for para você, devolvemos 100% do valor investido sem perguntas. Queremos que você estude com confiança.</div>
+        <summary>Qual é a política de reembolso?</summary>
+        <div class="faq-item__answer">São duas camadas de proteção: primeiro, 21 dias de teste grátis — você experimenta tudo sem pagar. Depois, se assinar e mudar de ideia nos primeiros 7 dias após a cobrança, devolvemos 100% do valor sem perguntas. Risco zero.</div>
       </details>
     </div>
   </div>
@@ -2520,10 +2365,10 @@ ul { list-style: none; }
 <section class="final-cta">
   <div class="container">
     <div class="final-cta__box">
-      <h2 class="final-cta__title">A residência não espera.<br>Seu preparo também não deveria.</h2>
-      <p class="final-cta__desc">Junte-se aos estudantes que decidiram estudar com ciência, não com achismo.</p>
-      <a href="https://checkout.medbooster.com.br" class="btn btn--primary btn--large" style="position:relative">Começar agora</a>
-      <p class="final-cta__micro">Já tem conta? <a href="https://app.medbooster.com.br" style="color:var(--accent)">Entrar na plataforma →</a></p>
+      <h2 class="final-cta__title">Cada dia sem revisão inteligente<br>é conteúdo que você esquece.</h2>
+      <p class="final-cta__desc">Você já investiu no cursinho. Agora proteja esse investimento.</p>
+      <a href="https://checkout.medbooster.com.br" class="btn btn--primary btn--large" style="position:relative">Começar grátis por 21 dias</a>
+      <p class="final-cta__micro">21 dias grátis. Cancele antes e não paga nada. <a href="https://app.medbooster.com.br" style="color:var(--accent)">Já tem conta? Entrar →</a></p>
     </div>
   </div>
 </section>
@@ -2535,19 +2380,19 @@ ul { list-style: none; }
   <div class="container">
     <div class="counter-grid-responsive" style="display:grid;grid-template-columns:repeat(4,1fr);gap:32px;text-align:center">
       <div class="animate-on-scroll">
-        <div class="counter-value" data-target="26" style="font-size:3rem;font-weight:800;color:var(--accent);line-height:1">0</div>
+        <div class="counter-value" data-target="26" style="font-size:3rem;font-weight:800;color:var(--accent);line-height:1">26</div>
         <div style="font-size:.9rem;color:var(--text-secondary);margin-top:8px;font-weight:500">Bancas catalogadas</div>
       </div>
       <div class="animate-on-scroll">
-        <div style="font-size:3rem;font-weight:800;color:var(--accent);line-height:1"><span class="counter-value" data-target="18000" style="font-size:3rem;font-weight:800;color:var(--accent)">0</span>+</div>
+        <div style="font-size:3rem;font-weight:800;color:var(--accent);line-height:1"><span class="counter-value" data-target="18183" style="font-size:3rem;font-weight:800;color:var(--accent)">18.183</span>+</div>
         <div style="font-size:.9rem;color:var(--text-secondary);margin-top:8px;font-weight:500">Questões catalogadas</div>
       </div>
       <div class="animate-on-scroll">
-        <div style="font-size:3rem;font-weight:800;color:var(--accent);line-height:1"><span class="counter-value" data-target="217" style="font-size:3rem;font-weight:800;color:var(--accent)">0</span>+</div>
+        <div style="font-size:3rem;font-weight:800;color:var(--accent);line-height:1"><span class="counter-value" data-target="217" style="font-size:3rem;font-weight:800;color:var(--accent)">217</span>+</div>
         <div style="font-size:.9rem;color:var(--text-secondary);margin-top:8px;font-weight:500">Provas mapeadas</div>
       </div>
       <div class="animate-on-scroll">
-        <div style="font-size:3rem;font-weight:800;color:var(--accent);line-height:1"><span class="counter-value" data-target="396" style="font-size:3rem;font-weight:800;color:var(--accent)">0</span></div>
+        <div style="font-size:3rem;font-weight:800;color:var(--accent);line-height:1"><span class="counter-value" data-target="396" style="font-size:3rem;font-weight:800;color:var(--accent)">396</span></div>
         <div style="font-size:.9rem;color:var(--text-secondary);margin-top:8px;font-weight:500">Subtemas na taxonomia</div>
       </div>
     </div>
@@ -2575,33 +2420,32 @@ ul { list-style: none; }
           </div>
           <div class="logo__text">Med<span>Booster</span></div>
         </div>
-        <p>Sistema de estudo adaptativo para residência médica. Ciência cognitiva aplicada à sua aprovação.</p>
+        <p>Sua mentoria de residência médica 24/7. Ciência cognitiva aplicada à sua aprovação.</p>
       </div>
       <div>
         <div class="footer__col-title">Produto</div>
         <ul class="footer__links">
-          <li><a href="#">Estudo Adaptativo</a></li>
-          <li><a href="#">Métricas & Dashboard</a></li>
-          <li><a href="#">Repetição Espaçada</a></li>
-          <li><a href="#">Bancas Disponíveis</a></li>
+          <li><a href="#features">Funcionalidades</a></li>
+          <li><a href="#ciencia">Como funciona</a></li>
+          <li><a href="#pricing">Preços</a></li>
+          <li><a href="#faq">Dúvidas frequentes</a></li>
         </ul>
       </div>
       <div>
         <div class="footer__col-title">Institucional</div>
         <ul class="footer__links">
-          <li><a href="#">Sobre nós</a></li>
-          <li><a href="#">Fundamentação Científica</a></li>
-          <li><a href="#">Termos de Uso</a></li>
-          <li><a href="#">Privacidade</a></li>
+          <li><a href="#ciencia">Fundamentação Científica</a></li>
+          <li><a href="https://app.medbooster.com.br/termos-de-uso.html" target="_blank" rel="noopener">Termos de Uso</a></li>
+          <li><a href="https://app.medbooster.com.br/politica-privacidade.html" target="_blank" rel="noopener">Privacidade</a></li>
         </ul>
       </div>
       <div>
         <div class="footer__col-title">Suporte</div>
         <ul class="footer__links">
-          <li><a href="#">Central de Ajuda</a></li>
-          <li><a href="#">Contato</a></li>
-          <li><a href="#">Instagram</a></li>
-          <li><a href="#">LinkedIn</a></li>
+          <li><a href="https://wa.me/5521999999999?text=Preciso%20de%20ajuda%20com%20o%20MedBooster" target="_blank" rel="noopener">Central de Ajuda</a></li>
+          <li><a href="mailto:seu.medbooster@gmail.com">Contato</a></li>
+          <li><a href="https://instagram.com/medbooster" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://linkedin.com/company/medbooster" target="_blank" rel="noopener">LinkedIn</a></li>
         </ul>
       </div>
     </div>
@@ -2737,78 +2581,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-// Pricing toggle landing page (anual/mensal)
-function switchPlan(plan) {
-  const btnAnual = document.getElementById('btnAnual');
-  const btnMensal = document.getElementById('btnMensal');
-  const planName = document.getElementById('planName');
-  const planPrice = document.getElementById('planPrice');
-  const planSavings = document.getElementById('planSavings');
-
-  if (plan === 'anual') {
-    btnAnual.style.background = 'var(--accent)';
-    btnAnual.style.borderColor = 'var(--accent)';
-    btnAnual.style.color = '#fff';
-    btnMensal.style.background = 'var(--bg-elevated)';
-    btnMensal.style.borderColor = 'var(--border)';
-    btnMensal.style.color = 'var(--text-muted)';
-    planName.textContent = 'MedBooster — Plano Anual';
-    planPrice.innerHTML = 'R$ 199,90 <span>/mês</span>';
-    planSavings.innerHTML = '<span style="color:var(--accent);font-weight:700;font-size:1rem">Economia de R$ 150/mês</span><span style="display:block;color:var(--text-muted);font-size:.8rem;margin-top:2px">R$ 2.398,80/ano (equivale a R$ 199,90/mês)</span>';
-    planSavings.style.display = 'block';
-  } else {
-    btnMensal.style.background = 'var(--accent)';
-    btnMensal.style.borderColor = 'var(--accent)';
-    btnMensal.style.color = '#fff';
-    btnAnual.style.background = 'var(--bg-elevated)';
-    btnAnual.style.borderColor = 'var(--border)';
-    btnAnual.style.color = 'var(--text-muted)';
-    planName.textContent = 'MedBooster — Plano Mensal';
-    planPrice.innerHTML = 'R$ 239,90 <span>/mês</span>';
-    planSavings.innerHTML = '<span style="color:var(--text-muted);font-weight:600;font-size:.9rem">Sem compromisso — mude para anual e economize R$ 480/ano</span>';
-    planSavings.style.display = 'block';
-  }
-}
-
-// Pricing toggle (monthly/annual)
-let isAnnual = false;
-function togglePricing() {
-  isAnnual = !isAnnual;
-  const dot = document.getElementById('pricingDot');
-  const toggleMonthly = document.getElementById('toggleMonthly');
-  const toggleAnnual = document.getElementById('toggleAnnual');
-  const btn = document.getElementById('pricingToggle');
-
-  if (isAnnual) {
-    dot.style.left = '28px';
-    btn.style.background = 'var(--accent)';
-    btn.style.borderColor = 'var(--accent)';
-    toggleMonthly.style.fontWeight = '500';
-    toggleMonthly.style.color = 'var(--text-muted)';
-    toggleAnnual.style.fontWeight = '600';
-    toggleAnnual.style.color = 'var(--text-primary)';
-  } else {
-    dot.style.left = '2px';
-    btn.style.background = 'var(--bg-elevated)';
-    btn.style.borderColor = 'var(--border)';
-    toggleMonthly.style.fontWeight = '600';
-    toggleMonthly.style.color = 'var(--text-primary)';
-    toggleAnnual.style.fontWeight = '500';
-    toggleAnnual.style.color = 'var(--text-muted)';
-  }
-
-  document.querySelectorAll('.pricing-card__price[data-monthly]').forEach(el => {
-    const price = isAnnual ? el.dataset.annual : el.dataset.monthly;
-    el.innerHTML = `R$ ${price} <span>/mês</span>`;
-  });
-
-  document.querySelectorAll('.pricing-card__save--annual').forEach(el => {
-    el.style.display = isAnnual ? 'block' : 'none';
-  });
-  document.querySelectorAll('.pricing-card__save--monthly').forEach(el => {
-    el.style.display = isAnnual ? 'none' : 'block';
-  });
-}
 
 // Animated counter for social proof
 function animateCounter(el, target, duration) {
@@ -2835,6 +2607,17 @@ const counterObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.counter-value').forEach(el => counterObserver.observe(el));
 
+// Fallback: ensure counters show final values even if IntersectionObserver fails
+setTimeout(() => {
+  document.querySelectorAll('.counter-value').forEach(el => {
+    if (!el.dataset.counted) {
+      el.dataset.counted = 'true';
+      const target = parseInt(el.dataset.target);
+      el.textContent = target.toLocaleString('pt-BR');
+    }
+  });
+}, 4000);
+
 // WhatsApp button smooth entrance
 setTimeout(() => {
   const wb = document.getElementById('whatsappBtn');
@@ -2859,38 +2642,6 @@ document.querySelectorAll('.nav a').forEach(link => {
   });
 });
 
-// Checkout section: billing toggle
-const billingToggle = document.getElementById('billingToggle');
-if (billingToggle) {
-  let isBillingAnnual = false;
-
-  billingToggle.addEventListener('click', function() {
-    isBillingAnnual = !isBillingAnnual;
-    this.classList.toggle('active');
-
-    document.querySelectorAll('.checkout-plan-option').forEach(plan => {
-      const monthlyPrice = plan.dataset.monthly;
-      const yearlyPrice = plan.dataset.yearly;
-      const priceEl = plan.querySelector('.checkout-plan-option__price');
-
-      if (isBillingAnnual) {
-        priceEl.textContent = `R$ ${yearlyPrice}`;
-        plan.querySelector('.checkout-plan-option__billing').textContent = '/ano ou R$ ' + (yearlyPrice / 12).toFixed(2) + '/mês';
-      } else {
-        priceEl.textContent = `R$ ${monthlyPrice}`;
-        plan.querySelector('.checkout-plan-option__billing').textContent = '/mês ou R$ ' + (monthlyPrice * 12 * 0.7).toFixed(2) + '/ano';
-      }
-    });
-  });
-
-  // Plan selection
-  document.querySelectorAll('.checkout-plan-option').forEach(plan => {
-    plan.addEventListener('click', function() {
-      document.querySelectorAll('.checkout-plan-option').forEach(p => p.classList.remove('selected'));
-      this.classList.add('selected');
-    });
-  });
-}
 </script>
 
 <!-- ============================================
@@ -2898,11 +2649,17 @@ if (billingToggle) {
      ============================================ -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
-// Supabase client
+// Supabase client — wrapped in IIFE to avoid SyntaxError from UMD global 'supabase' conflict
+(function() {
+'use strict';
 const SUPABASE_URL = 'https://jjvtpfffkfcnkeuumesa.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpqdnRwZmZma2ZjbmtldXVtZXNhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwOTAyOTUsImV4cCI6MjA4ODY2NjI5NX0.-MuyQPIRIIKKEkIi2JvA6E0EeO_GvQAxKIBfBbBJrSY';
 const APP_URL = 'https://app.medbooster.com.br';
 
+if (!window.supabase || !window.supabase.createClient) {
+  console.error('[MedBooster] Supabase SDK failed to load. Auth will not work.');
+  return;
+}
 const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 // Check if already logged in — if on app subdomain, redirect directly
@@ -2914,9 +2671,14 @@ supabase.auth.getSession().then(({ data: { session } }) => {
     }
     // On landing page: show "Acessar plataforma" button instead of login
     const actionsEl = document.querySelector('.header__actions');
-    actionsEl.innerHTML = `
-      <a href="${APP_URL}#access_token=${session.access_token}&refresh_token=${session.refresh_token}&token_type=bearer&type=magiclink" class="btn btn--primary" style="padding:10px 20px;font-size:.875rem">Acessar plataforma</a>
-    `;
+    // V-005: DOM seguro — evita innerHTML com tokens
+    actionsEl.textContent = '';
+    const link = document.createElement('a');
+    link.href = APP_URL + '#access_token=' + encodeURIComponent(session.access_token) + '&refresh_token=' + encodeURIComponent(session.refresh_token) + '&token_type=bearer&type=magiclink';
+    link.className = 'btn btn--primary';
+    link.style.cssText = 'padding:10px 20px;font-size:.875rem';
+    link.textContent = 'Acessar plataforma';
+    actionsEl.appendChild(link);
   }
 });
 
@@ -2957,7 +2719,10 @@ function setLoading(btnId, loading) {
   const btn = document.getElementById(btnId);
   if (loading) {
     btn.dataset.originalText = btn.textContent;
-    btn.innerHTML = '<span class="auth-spinner"></span>';
+    btn.textContent = '';
+    const spinner = document.createElement('span');
+    spinner.className = 'auth-spinner';
+    btn.appendChild(spinner);
     btn.disabled = true;
   } else {
     btn.textContent = btn.dataset.originalText;
@@ -3092,6 +2857,17 @@ async function handleReset(e) {
 
   showSuccess('resetSuccess', 'Link de recuperação enviado! Verifique seu email.');
 }
+
+// Expose needed functions to global scope for onclick handlers
+window.openAuthModal = openAuthModal;
+window.closeAuthModal = closeAuthModal;
+window.showView = showView;
+window.handleLogin = handleLogin;
+window.handleSignup = handleSignup;
+window.handleReset = handleReset;
+window.togglePassword = togglePassword;
+window.updateStrength = updateStrength;
+})(); // end IIFE
 </script>
 
 </body>
