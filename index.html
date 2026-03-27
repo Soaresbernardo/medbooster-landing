@@ -7,7 +7,7 @@
 <meta name="description" content="Pare de esquecer o que você já estudou. O MedBooster é sua mentoria de residência 24/7: diz o que e quando revisar, projeta sua nota por banca e se adapta ao seu ritmo. Teste grátis por 21 dias.">
 <meta name="keywords" content="residência médica, estudo adaptativo, repetição espaçada, FSRS, cronograma residência, provas residência médica, MedBooster">
 <link rel="canonical" href="https://medbooster.com.br">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%2307C488'/><text x='50' y='72' font-size='60' fill='white' text-anchor='middle' font-family='sans-serif' font-weight='bold'>M</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' fill='none'><defs><linearGradient id='bg' x1='0' y1='0' x2='512' y2='512' gradientUnits='userSpaceOnUse'><stop offset='0%25' stop-color='%2307C488'/><stop offset='100%25' stop-color='%23047857'/></linearGradient></defs><rect width='512' height='512' rx='128' fill='url(%23bg)'/><path d='M160 340 L256 280 L352 340' fill='none' stroke='white' stroke-width='40' stroke-linecap='round' stroke-linejoin='round' opacity='0.35'/><path d='M160 270 L256 210 L352 270' fill='none' stroke='white' stroke-width='40' stroke-linecap='round' stroke-linejoin='round' opacity='0.65'/><path d='M160 200 L256 140 L352 200' fill='none' stroke='white' stroke-width='40' stroke-linecap='round' stroke-linejoin='round'/></svg>">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -77,6 +77,19 @@
   --shadow-lg: 0 10px 25px rgba(0,0,0,0.06), 0 4px 10px rgba(0,0,0,0.04);
   --shadow-xl: 0 20px 50px rgba(0,0,0,0.08), 0 8px 20px rgba(0,0,0,0.04);
   --shadow-premium: 0 1px 2px rgba(0,0,0,0.04), 0 2px 4px rgba(0,0,0,0.04), 0 4px 8px rgba(0,0,0,0.04), 0 8px 16px rgba(0,0,0,0.03), 0 16px 32px rgba(0,0,0,0.02);
+
+  /* Liquid Glass Tokens — BOLD */
+  --glass-bg: rgba(255,255,255,0.25);
+  --glass-bg-strong: rgba(255,255,255,0.18);
+  --glass-bg-accent: rgba(7,196,136,0.12);
+  --glass-border: rgba(255,255,255,0.7);
+  --glass-border-outer: rgba(0,0,0,0.08);
+  --glass-blur: blur(28px) saturate(2.0);
+  --glass-blur-strong: blur(48px) saturate(2.2);
+  --glass-highlight: inset 0 1px 0 rgba(255,255,255,0.9), inset 0 0 30px rgba(255,255,255,0.4);
+  --glass-highlight-strong: inset 0 2px 0 rgba(255,255,255,1), inset 0 0 60px rgba(255,255,255,0.5), inset 0 -1px 0 rgba(255,255,255,0.4);
+  --glass-shadow: 0 8px 32px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06);
+  --glass-shadow-elevated: 0 16px 64px rgba(0,0,0,0.16), 0 4px 16px rgba(0,0,0,0.08), 0 0 0 1px rgba(255,255,255,0.6);
 }
 
 /* ============================================
@@ -94,6 +107,10 @@ html {
 body {
   font-family: var(--sans);
   background: var(--bg-primary);
+  background-image:
+    radial-gradient(ellipse 80% 50% at 20% 40%, rgba(7,196,136,0.10) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 50% at 80% 20%, rgba(59,130,246,0.08) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 50% 80%, rgba(168,85,247,0.06) 0%, transparent 70%);
   color: var(--text-primary);
   line-height: 1.6;
   overflow-x: hidden;
@@ -260,12 +277,9 @@ body::after {
 }
 .logo__icon {
   width: 36px; height: 36px;
-  background: var(--accent);
-  border-radius: 10px;
   display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 2px 8px rgba(7,196,136,0.25);
 }
-.logo__icon svg { width: 20px; height: 20px; }
+.logo__icon svg { width: 36px; height: 36px; }
 .logo__text {
   font-size: 1.25rem;
   font-weight: 900;
@@ -442,12 +456,15 @@ body::after {
 }
 
 .mockup-window {
-  background: var(--bg-card);
+  background: var(--glass-bg);
   border-radius: 16px;
-  border: 1px solid var(--border);
+  border: 1px solid var(--glass-border);
+  border-top: 1px solid rgba(255,255,255,0.85);
   overflow: hidden;
-  box-shadow: var(--shadow-premium);
+  box-shadow: var(--glass-shadow-elevated), var(--glass-highlight);
   position: relative;
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
 }
 
 .mockup-window__bar {
@@ -488,10 +505,12 @@ body::after {
 }
 
 .dash-card {
-  background: var(--bg-secondary);
+  background: rgba(255,255,255,0.3);
   border-radius: 10px;
   padding: 16px;
-  border: 1px solid var(--border);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 .dash-card__label {
   font-size: 0.68rem;
@@ -627,14 +646,17 @@ body::after {
 }
 
 .problem-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow-premium);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-top: 1px solid rgba(255,255,255,0.8);
+  box-shadow: var(--glass-shadow), var(--glass-highlight);
   border-radius: 16px;
   padding: 36px 28px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
 }
 .problem-card::before {
   content: '';
@@ -646,7 +668,7 @@ body::after {
   transition: opacity 0.3s;
 }
 .problem-card:hover::before { opacity: 1; }
-.problem-card:hover { border-color: rgba(239,68,68,0.3); transform: translateY(-4px); box-shadow: var(--shadow-xl); }
+.problem-card:hover { border-color: rgba(239,68,68,0.3); transform: translateY(-4px); box-shadow: var(--glass-shadow-elevated), var(--glass-highlight-strong); }
 
 .problem-card__icon {
   width: 52px; height: 52px;
@@ -682,16 +704,20 @@ body::after {
 }
 
 .engine-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow-premium);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-top: 1px solid rgba(255,255,255,0.85);
+  box-shadow: var(--glass-shadow), var(--glass-highlight);
   border-radius: 16px;
   padding: 36px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
 }
 .engine-card:hover {
   border-color: var(--border-accent);
   transform: translateY(-4px);
+  box-shadow: var(--glass-shadow-elevated), var(--glass-highlight-strong);
   box-shadow: var(--shadow-xl);
 }
 
@@ -990,11 +1016,14 @@ body::after {
 .founder-card {
   max-width: 720px;
   margin: 48px auto 0;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-top: 1px solid rgba(255,255,255,0.85);
   border-radius: 20px;
   padding: 40px 36px;
-  box-shadow: var(--shadow-premium);
+  box-shadow: var(--glass-shadow), var(--glass-highlight);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
 }
 
 /* ============================================
@@ -1005,11 +1034,13 @@ body::after {
   border-collapse: separate;
   border-spacing: 0;
   margin-top: 48px;
-  background: var(--bg-card);
+  background: var(--glass-bg);
   border-radius: 16px;
   overflow: hidden;
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow-premium);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow), var(--glass-highlight);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
 }
 
 .comparison-table th,
@@ -1047,26 +1078,31 @@ body::after {
 }
 
 .pricing-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-top: 1px solid rgba(255,255,255,0.85);
   border-radius: 20px;
   padding: 36px 28px;
   display: flex;
   flex-direction: column;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: var(--shadow-premium);
+  box-shadow: var(--glass-shadow), var(--glass-highlight);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
 }
 .pricing-card:hover {
   transform: translateY(-4px);
-  box-shadow: var(--shadow-xl);
+  box-shadow: var(--glass-shadow-elevated), var(--glass-highlight-strong);
 }
 
 .pricing-card--featured {
-  border-color: var(--accent);
+  border-color: rgba(7,196,136,0.4);
   position: relative;
-  box-shadow: 0 4px 24px rgba(7,196,136,0.15), var(--shadow-premium);
-  background: linear-gradient(#ffffff, #ffffff) padding-box, linear-gradient(135deg, var(--accent), var(--brand-hover), var(--accent)) border-box;
-  border: 2px solid transparent;
+  box-shadow: 0 4px 24px rgba(7,196,136,0.2), var(--glass-shadow), var(--glass-highlight-strong);
+  background: rgba(7,196,136,0.06);
+  border: 2px solid rgba(7,196,136,0.3);
+  backdrop-filter: var(--glass-blur-strong);
+  -webkit-backdrop-filter: var(--glass-blur-strong);
 }
 
 .pricing-card__badge {
@@ -1158,14 +1194,17 @@ body::after {
 }
 
 .faq-item {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow-sm);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-top: 1px solid rgba(255,255,255,0.85);
+  box-shadow: var(--glass-shadow), var(--glass-highlight);
   border-radius: 14px;
   overflow: hidden;
   transition: box-shadow 0.3s;
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
 }
-.faq-item:hover { box-shadow: var(--shadow-md); }
+.faq-item:hover { box-shadow: var(--glass-shadow-elevated), var(--glass-highlight-strong); }
 
 .faq-item summary {
   padding: 20px 24px;
@@ -1210,14 +1249,17 @@ body::after {
 }
 
 .final-cta__box {
-  background: var(--bg-card);
-  border: 1px solid var(--border-accent);
-  box-shadow: 0 4px 24px rgba(7,196,136,0.08), var(--shadow-premium);
+  background: var(--glass-bg-strong);
+  border: 1px solid rgba(7,196,136,0.3);
+  border-top: 1px solid rgba(255,255,255,0.85);
+  box-shadow: 0 4px 24px rgba(7,196,136,0.15), var(--glass-shadow-elevated), var(--glass-highlight-strong);
   border-radius: 24px;
   padding: 64px 48px;
   text-align: center;
   position: relative;
   overflow: hidden;
+  backdrop-filter: var(--glass-blur-strong);
+  -webkit-backdrop-filter: var(--glass-blur-strong);
 }
 .final-cta__box::before {
   content: '';
@@ -1326,7 +1368,7 @@ body::after {
 }
 .modal-overlay.active {
   opacity: 1;
-  pointer-events: all;
+  pointer-events: auto;
 }
 
 .auth-modal {
@@ -1560,8 +1602,8 @@ body::after {
 
   .header { padding: 0 16px; }
   .header__inner { height: 60px; gap: 8px; }
-  .logo__icon { width: 32px; height: 32px; border-radius: 8px; }
-  .logo__icon svg { width: 18px; height: 18px; }
+  .logo__icon { width: 32px; height: 32px; }
+  .logo__icon svg { width: 32px; height: 32px; }
   .logo__text { font-size: 1.1rem; }
   .nav { display: none; }
   .menu-toggle { display: flex; align-items: center; justify-content: center; font-size: 1.4rem; padding: 0; }
@@ -1724,7 +1766,7 @@ body::after {
   <div class="hero__orb hero__orb--1"></div>
   <div class="hero__orb hero__orb--2"></div>
   <div class="hero__orb hero__orb--3"></div>
-  <div class="hero__ai-texture" style="position:absolute;inset:0;background-image:url('https://v3b.fal.media/files/b/0a9393c6/FWooR94E_pa_4RpWXCPDI_Xku9ViuG.png');background-size:cover;background-position:center;opacity:0.08;pointer-events:none;z-index:0"></div>
+  <div class="hero__ai-texture" style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 40% at 50% 50%, rgba(7,196,136,0.06) 0%, transparent 70%);pointer-events:none;z-index:0"></div>
 
   <div class="container hero__content">
     <div class="hero__text">
@@ -1882,21 +1924,30 @@ body::after {
     <div class="problem-grid">
       <div class="problem-card animate-on-scroll">
         <div class="problem-card__icon">
-          <img src="https://v3b.fal.media/files/b/0a9393d1/XwNCp9-tpTosVQ8i1JL33_nnKbFNEL.png" alt="Estudo passivo" style="width:48px;height:48px;border-radius:12px;object-fit:cover">
+          <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/>
+            <path d="m14.5 7-5 5"/><path d="m9.5 7 5 5"/>
+          </svg>
         </div>
         <h4 class="problem-card__title">Estudo passivo não fixa</h4>
         <p class="problem-card__desc">Releitura e resumos dão falsa sensação de aprendizado. Dunlosky et al. (2013) classificaram essas técnicas como de <strong style="color:var(--text-primary)">utilidade baixa</strong>.</p>
       </div>
       <div class="problem-card animate-on-scroll">
         <div class="problem-card__icon">
-          <img src="https://v3b.fal.media/files/b/0a9393d1/vQIMN0h0gDoaVaPml9oX4_MwnUOhEq.png" alt="Esquecimento" style="width:48px;height:48px;border-radius:12px;object-fit:cover">
+          <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a4 4 0 0 0-4 4v1a4 4 0 0 0-.5 7.9L7 22h10l-.5-7.1A4 4 0 0 0 16 7V6a4 4 0 0 0-4-4z"/>
+            <path d="m15 13-3-3-3 3"/>
+          </svg>
         </div>
         <h4 class="problem-card__title">Você esquece 80% em 48h</h4>
         <p class="problem-card__desc">A curva de esquecimento de Ebbinghaus (1885) mostra que sem revisão espaçada, a retenção despenca exponencialmente.</p>
       </div>
       <div class="problem-card animate-on-scroll">
         <div class="problem-card__icon">
-          <img src="https://v3b.fal.media/files/b/0a9393d2/UGij9irSi2_vNQzJ_fJp6_umlcq3GR.png" alt="Apps genéricos" style="width:48px;height:48px;border-radius:12px;object-fit:cover">
+          <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+          </svg>
         </div>
         <h4 class="problem-card__title">Apps genéricos, sem direção</h4>
         <p class="problem-card__desc">Planners e apps de revisão que tratam todos os temas igual — sem saber o peso de cada banca nem o que você realmente precisa revisar.</p>
@@ -1923,7 +1974,7 @@ body::after {
           <div class="engine-card__papers">
             <div class="paper-ref">
               <div class="paper-ref__dot"></div>
-              <div class="paper-ref__text">Ye et al. (2024) — "A Stochastic Shortest Path Algorithm for Optimizing Spaced Repetition Scheduling" — KDD 2022</div>
+              <div class="paper-ref__text">Ye et al. (2022) — "A Stochastic Shortest Path Algorithm for Optimizing Spaced Repetition Scheduling" — KDD 2022</div>
             </div>
           </div>
         </div>
@@ -1991,7 +2042,9 @@ body::after {
     <div class="feature-row animate-on-scroll">
       <div class="feature-content">
         <div class="feature-icon">
-          <img src="https://v3b.fal.media/files/b/0a9393d3/dG8240hzGH_hi2fGdQuo3_QpKUNm1X.png" alt="Foco na banca" style="width:48px;height:48px;border-radius:12px;object-fit:cover">
+          <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="2" fill="none">
+            <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>
+          </svg>
         </div>
         <h3 class="feature-title">Foco na SUA banca</h3>
         <p class="feature-desc">Questões catalogadas e classificadas por banca, ano, área e subtema. Você estuda o perfil exato da prova que vai prestar — cada banca tem seus temas recorrentes e nós mapeamos todos eles.</p>
@@ -2038,7 +2091,9 @@ body::after {
     <div class="feature-row feature-row--reverse animate-on-scroll">
       <div class="feature-content">
         <div class="feature-icon">
-          <img src="https://v3b.fal.media/files/b/0a9393d3/oe_pnw4CKEmVzQcVPJQYv_UH4JDTMx.png" alt="Projeção de nota" style="width:48px;height:48px;border-radius:12px;object-fit:cover">
+          <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="2" fill="none">
+            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline>
+          </svg>
         </div>
         <h3 class="feature-title">Saiba sua nota antes da prova</h3>
         <p class="feature-desc">O MedBooster analisa seu desempenho, projeta sua nota (com IC95%) e calcula sua probabilidade de aprovação em tempo real.</p>
@@ -2068,7 +2123,9 @@ body::after {
     <div class="feature-row animate-on-scroll">
       <div class="feature-content">
         <div class="feature-icon">
-          <img src="https://v3b.fal.media/files/b/0a9393d3/ZmRE5J4TJ4ykwUdwVsym0_0aYXpwOS.png" alt="Revisão no momento exato" style="width:48px;height:48px;border-radius:12px;object-fit:cover">
+          <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="2" fill="none">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+          </svg>
         </div>
         <h3 class="feature-title">Revisão no momento exato</h3>
         <p class="feature-desc">O motor de memória calcula quando você está prestes a esquecer e agenda a revisão nesse ponto. Intervalos crescentes otimizados — de 3 dias a meses — maximizando retenção com mínimo esforço.</p>
@@ -2129,7 +2186,10 @@ body::after {
     <div class="feature-row feature-row--reverse animate-on-scroll">
       <div class="feature-content">
         <div class="feature-icon">
-          <img src="https://v3b.fal.media/files/b/0a9393d4/2Z61uptbJz25RNOEaH2Pr_rjAwUM76.png" alt="Valor acessível" style="width:48px;height:48px;border-radius:12px;object-fit:cover">
+          <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/>
+            <path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 18V6"/>
+          </svg>
         </div>
         <h3 class="feature-title">Mentoria por R$199,90/mês</h3>
         <p class="feature-desc">Mentorias humanas custam R$500-2.000/mês e atendem 1-2x por semana. O MedBooster faz o mesmo trabalho 24/7 — e ainda aprende com cada resposta sua para se adaptar ao seu ritmo.</p>
@@ -2432,7 +2492,7 @@ body::after {
       <div class="footer__brand">
         <div class="logo">
           <div class="logo__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"><path d="M12 2v20M2 12h20"/></svg>
+            <svg viewBox="0 0 512 512" fill="none"><path d="M256 36 C150 36 68 110 68 210 C68 340 170 440 256 480 C342 440 444 340 444 210 C444 110 362 36 256 36Z" fill="#07C488" fill-opacity="0.06" stroke="#07C488" stroke-width="14" stroke-linejoin="round"/><path d="M180 330 L256 275 L332 330" fill="none" stroke="#07C488" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" opacity="0.4"/><path d="M180 268 L256 213 L332 268" fill="none" stroke="#07C488" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/><path d="M180 206 L256 151 L332 206" fill="none" stroke="#07C488" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
           <div class="logo__text">Med<span>Booster</span></div>
         </div>
@@ -2482,7 +2542,7 @@ body::after {
     <div class="auth-modal__logo">
       <div class="logo" style="justify-content:center">
         <div class="logo__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"><path d="M12 2v20M2 12h20"/></svg>
+          <svg viewBox="0 0 512 512" fill="none"><path d="M256 36 C150 36 68 110 68 210 C68 340 170 440 256 480 C342 440 444 340 444 210 C444 110 362 36 256 36Z" fill="#07C488" fill-opacity="0.06" stroke="#07C488" stroke-width="14" stroke-linejoin="round"/><path d="M180 330 L256 275 L332 330" fill="none" stroke="#07C488" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" opacity="0.4"/><path d="M180 268 L256 213 L332 268" fill="none" stroke="#07C488" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/><path d="M180 206 L256 151 L332 206" fill="none" stroke="#07C488" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
         <div class="logo__text">Med<span>Booster</span></div>
       </div>
@@ -2662,6 +2722,7 @@ document.querySelectorAll('.nav a').forEach(link => {
 // SRS interval animation — simulates FSRS adapting intervals
 (function() {
   const intervals = [
+    ['3d','4d','11d','28d'],
     ['3d','8d','21d','52d'],
     ['3d','10d','28d','65d'],
     ['4d','12d','35d','80d'],
@@ -2786,13 +2847,22 @@ function togglePassword(inputId, btn) {
   const isPassword = input.type === 'password';
   input.type = isPassword ? 'text' : 'password';
   // Swap icon: eye-open vs eye-off
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg.setAttribute('viewBox', '0 0 24 24');
+  svg.setAttribute('fill', 'none');
+  svg.setAttribute('stroke', 'currentColor');
+  svg.setAttribute('stroke-width', '2');
+  svg.setAttribute('stroke-linecap', 'round');
+  svg.setAttribute('stroke-linejoin', 'round');
   if (isPassword) {
-    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>';
+    svg.innerHTML = '<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/>';
     btn.setAttribute('aria-label', 'Ocultar senha');
   } else {
-    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>';
+    svg.innerHTML = '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>';
     btn.setAttribute('aria-label', 'Mostrar senha');
   }
+  btn.textContent = '';
+  btn.appendChild(svg);
 }
 
 // Password strength

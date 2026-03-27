@@ -1,0 +1,10 @@
+# Vercel
+.vercel/
+
+# Deploy scripts (contain secrets)
+deploy_vercel.html
+github_upload.html
+
+# Claude prompts
+CONTINUATION_PROMPT.md
+PROMPT_REDESIGN_LANDING.md
